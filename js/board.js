@@ -18,7 +18,7 @@ var BOARD = (function( $ ){
 
 		this.row 		= y;
 		this.column 	= x;
-		this.id 		= "row" + y + "column" + x;
+		this.id 		= "r" + y + "c" + x;
 		this.occupied	= false;
 		this.blocked 	= false;
 		this.occopiedBy = undefined;
@@ -41,7 +41,7 @@ var BOARD = (function( $ ){
 		for (var row = 0, html = ""; row < Battlefield.length; row++ ) {
 			html += "<div class='row'>";
 			for ( var column = 0; column < Battlefield[row].length; column++ ) {
-				html += "<div class='field'>" + Battlefield[row][column].id + "</div>";
+				html += "<div class='field col-sm-1'>" + Battlefield[row][column].id + "</div>";
 			}
 			html += "</div>";
 		}
@@ -54,4 +54,4 @@ var BOARD = (function( $ ){
 
 })(jQuery);
 
-console.log( BOARD );
+//console.log( BOARD );
