@@ -18,7 +18,7 @@ var BOARD = (function( $ ){
 
 		this.row 		= y;
 		this.column 	= x;
-		this.id 		= "r" + y + "c" + x;
+		this.id 		= String.fromCharCode(97 + y) + x;
 		this.occupied	= false;
 		this.blocked 	= false;
 		this.occopiedBy = undefined;

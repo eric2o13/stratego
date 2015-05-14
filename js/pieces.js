@@ -8,12 +8,15 @@
 ===============================================================	
 ---------------------------------------------------------------
 =============================================================*/
+
 var PIECES = (function( $ ){
 
-	var Piece = function( name, rank ){
+	var Piece = function( name, rank, color ){
 
 		this.name 		= name;
 		this.rank 		= rank;
+		this.color		= color;
+		this.onBoard	= false;		
 		this.onField 	= undefined;
 		this.canMove	= (rank == "B" || rank == "F") ? false: true;
 		this.isScout	= (rank == 8) ? true : false;
@@ -84,15 +87,33 @@ var PIECES = (function( $ ){
 			}
 
 			for (i = 0; i < quantity; i++) {
-				redPieces.push( new Piece(name, rank) );	
-				bluePieces.push( new Piece(name, rank) );	
+				redPieces.push( new Piece(name, rank, 'red') );	
+				bluePieces.push( new Piece(name, rank, 'blue') );	
 			}
 			
 		}
 
 	})();
 
-	//console.log(redPieces);
+	var renderPieces = (function(){
+
+		for ( var x = 0; x < redPieces.length; x++ ) {
+
+			//hier kan ik de stukken rendenren
+			//zodra ik weet wat ik ermee ga doen
+
+		}
+
+	})();
+
+
+	return {
+
+		'red'  : redPieces,
+		'blue' : bluePieces
+
+	}
+
 
 })(jQuery);
 
