@@ -8,3 +8,7 @@
 #battlefield .field.blocked {
 	background: #EEE;
 }
+
+.occupied {
+	background: lime !important;
+}

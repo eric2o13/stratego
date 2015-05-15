@@ -19,15 +19,15 @@ var PIECES = (function( $ ){
 		this.onBoard	= false;		
 		this.onField 	= undefined;
 		this.canMove	= (rank == "B" || rank == "F") ? false: true;
-		this.isScout	= (rank == 8) ? true : false;
-		this.isMiner 	= (rank == 7) ? true : false;
-		this.isSpy	 	= (rank == 9) ? true : false;
+		this.isScout	= (rank == 9) ? true : false;
+		this.isMiner 	= (rank == 8) ? true : false;
+		this.isSpy	 	= (rank == 10) ? true : false;
 		this.isBomb		= (rank == "B") ? true : false;
 		this.isFlag		= (rank == "F") ? true : false;
 
 	};
 
-	var startingpieces 	= ["Flag","Marshall","General","Colonel","Major","Captain","Sergeant","Miner","Scout","Spy","Bomb" ];
+	var startingpieces 	= ["Flag","Marshall","General","Colonel","Major","Captain","Lieutenant","Sergeant","Miner","Scout","Spy","Bomb" ];
 	var redPieces 		= [];
 	var bluePieces 		= [];
 
@@ -64,20 +64,24 @@ var PIECES = (function( $ ){
 					rank = 5, quantity = 4;
 					break;
 
-				case "Sergeant":
+				case "Lieutenant":
 					rank = 6, quantity = 4;
 					break;
 
+				case "Sergeant":
+					rank = 7, quantity = 4;
+					break;
+
 				case "Miner":
-					rank = 7, quantity = 5;
+					rank = 8, quantity = 5;
 					break;
 
 				case "Scout":
-					rank = 8, quantity = 8;
+					rank = 9, quantity = 8;
 					break;
 
 				case "Spy":
-					rank = 9, quantity = 1;
+					rank = 10, quantity = 1;
 					break;
 
 				case "Bomb":

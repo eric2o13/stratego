@@ -23,7 +23,7 @@ var BOARD = (function( $ ){
 		this.id 		= String.fromCharCode(97 + y) + x;
 		this.occupied	= false;
 		this.blocked 	= false;
-		this.occopiedBy = undefined;
+		this.occupiedBy = undefined;
 
 	};
 
@@ -43,8 +43,12 @@ var BOARD = (function( $ ){
 			for ( var column = 0, classnames, field, content; column < Battlefield[row].length; column++ ) {
 
 				field = Battlefield[row][column];
-				classnames = (field.blocked) ? "field col-sm-1 blocked":"field col-sm-1";
+				
+				classnames = "field col-sm-1";
+				classnames += (field.blocked) ? " blocked" : "";
+				classnames += (field.occupied) ? " occupied" : "";
 				content = (field.occupied) ? field.occupiedBy.name : field.id;
+
 				html += "<div class='"+classnames+"'>" + content + "</div>";
 
 			}
@@ -193,13 +197,23 @@ var BOARD = (function( $ ){
 
 	var placePiecesOnBoard = (function(){
 
-		console.log(RedPieces);
-		//loop door de eerste 4 rijen
-		//bluepieces: loop door de laatste 4 rijen
+		for ( var y = 0, i = 0, field; y < 5; y++ ) {
+			for ( var x = 0; x < 12; x++ ) {
+				field = Battlefield[y][x];
+				if (!field.blocked) {
+					piece = RedPieces[i];
+					field.occupied = true;
+					field.occupiedBy = piece;
+					i++;
+				}
+			}
+		}
 
 	})();
 
+
 	renderBattlefield();
+
 
 	return Battlefield;
 
