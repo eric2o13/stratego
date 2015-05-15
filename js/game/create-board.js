@@ -61,18 +61,18 @@ var BOARD = (function( $ ){
 			a10 = selectFieldById("a10"),
 			a11 = selectFieldById("a11");
 		
-		a0.blocked = 
-		a1.blocked =
-		a2.blocked =
-		a3.blocked = 
-		a4.blocked = 
-		a5.blocked = 
-		a6.blocked = 
-		a7.blocked =
-		a8.blocked =
-		a9.blocked =
-		a10.blocked =
-		a11.blocked = true;
+			a0.blocked = true; 
+			a1.blocked = true;
+			a2.blocked = true;
+			a3.blocked = true; 
+			a4.blocked = true; 
+			a5.blocked = true; 
+			a6.blocked = true; 
+			a7.blocked = true;
+			a8.blocked = true;
+			a9.blocked = true;
+			a10.blocked = true;
+			a11.blocked = true;
 
 		var b0 = selectFieldById("b0"),
 			c0 = selectFieldById("c0"),
@@ -86,7 +86,6 @@ var BOARD = (function( $ ){
 			k0 = selectFieldById("k0"),
 			l0 = selectFieldById("l0");
 
-
 			b0.blocked = true;
 			c0.blocked = true;
 			d0.blocked = true;
@@ -99,7 +98,76 @@ var BOARD = (function( $ ){
 			k0.blocked = true;
 			l0.blocked = true;			
 
+		var l0 = selectFieldById("l0"),
+			l1 = selectFieldById("l1"),
+			l2 = selectFieldById("l2"),
+			l3 = selectFieldById("l3"),
+			l4 = selectFieldById("l4"),
+			l5 = selectFieldById("l5"),
+			l6 = selectFieldById("l6"),
+			l7 = selectFieldById("l7"),
+			l8 = selectFieldById("l8"),
+			l9 = selectFieldById("l9"),
+			l10 = selectFieldById("l10"),
+			l11 = selectFieldById("l11");
 
+			l0.blocked = true;
+			l1.blocked = true;
+			l2.blocked = true;
+			l3.blocked = true;
+			l4.blocked = true;
+			l5.blocked = true;
+			l6.blocked = true;
+			l7.blocked = true;
+			l8.blocked = true;
+			l9.blocked = true;
+			l10.blocked = true;
+			l11.blocked = true;
+
+		var a11 = selectFieldById("a11"),
+		 	b11 = selectFieldById("b11"),
+		 	c11 = selectFieldById("c11"),
+		 	d11 = selectFieldById("d11"),
+		 	e11 = selectFieldById("e11"),
+		 	f11 = selectFieldById("f11"),
+		 	g11 = selectFieldById("g11"),
+		 	h11 = selectFieldById("h11"),
+		 	i11 = selectFieldById("i11"),
+		 	j11 = selectFieldById("j11"),
+		 	k11 = selectFieldById("k11"),
+		 	l11 = selectFieldById("l11");
+
+			a11.blocked = true;
+			b11.blocked = true;
+			c11.blocked = true;
+			d11.blocked = true;
+			e11.blocked = true;
+			f11.blocked = true;
+			g11.blocked = true;
+			h11.blocked = true;
+			i11.blocked = true;
+			j11.blocked = true;
+			k11.blocked = true;
+			l11.blocked = true;
+
+		var f3 = selectFieldById("f3"),
+			f4 = selectFieldById("f4"),
+			g3 = selectFieldById("g3"),
+			g4 = selectFieldById("g4"),
+			f7 = selectFieldById("f7"),
+			f8 = selectFieldById("f8"),
+			g7 = selectFieldById("g7"),
+			g8 = selectFieldById("g8");
+
+			f3.blocked = true;
+			f4.blocked = true;
+			g3.blocked = true;
+			g4.blocked = true;
+			f7.blocked = true;
+			f8.blocked = true;
+			g7.blocked = true;
+			g8.blocked = true;
+			
 	})();
 
 	var renderBattlefield = (function(){
