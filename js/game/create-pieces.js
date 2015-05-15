@@ -95,18 +95,6 @@ var PIECES = (function( $ ){
 
 	})();
 
-	var renderPieces = (function(){
-
-		for ( var x = 0; x < redPieces.length; x++ ) {
-
-			//hier kan ik de stukken rendenren
-			//zodra ik weet wat ik ermee ga doen
-
-		}
-
-	})();
-
-
 	return {
 
 		'red'  : redPieces,

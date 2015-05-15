@@ -12,7 +12,9 @@
 var BOARD = (function( $ ){
 
 	var $battlefield 	= $("#battlefield"),
-		Battlefield 	= [];
+		Battlefield 	= [],
+		RedPieces 		= PIECES.red,
+		BluePieces 		= PIECES.blue;
 
 	var Field = function( y, x, id ){
 
@@ -25,15 +27,34 @@ var BOARD = (function( $ ){
 
 	};
 
-	var selectFieldById = function( id ){ //moet dit in een global.js komen?
+	var selectFieldById = function( id ){ 
 
-		var row = id.charAt(0).charCodeAt(0) - 97;//
+		var row = id.charAt(0).charCodeAt(0) - 97;
 		var column = id.match(/\d+/)[0];
 
 		return Battlefield[row][column];
 
 	};
 
+	var renderBattlefield = function(){
+		
+		for (var row = 0, html = ""; row < Battlefield.length; row++ ) {
+			html += "<div class='row'>";
+			for ( var column = 0, classnames, field, content; column < Battlefield[row].length; column++ ) {
+
+				field = Battlefield[row][column];
+				classnames = (field.blocked) ? "field col-sm-1 blocked":"field col-sm-1";
+				content = (field.occupied) ? field.occupiedBy.name : field.id;
+				html += "<div class='"+classnames+"'>" + content + "</div>";
+
+			}
+
+			html += "</div>";
+		}
+
+		$battlefield.html(html);
+
+	};
 
 	var createBattlefield = (function(){
 
@@ -170,23 +191,15 @@ var BOARD = (function( $ ){
 			
 	})();
 
-	var renderBattlefield = (function(){
-		
-		for (var row = 0, html = ""; row < Battlefield.length; row++ ) {
-			html += "<div class='row'>";
-			for ( var column = 0, classnames, field; column < Battlefield[row].length; column++ ) {
+	var placePiecesOnBoard = (function(){
 
-				field = Battlefield[row][column];
-				classnames = (field.blocked) ? "field col-sm-1 blocked" :"field col-sm-1" ;
-				html += "<div class='"+classnames+"'>" + field.id + "</div>";
-			}
-
-			html += "</div>";
-		}
-
-		$battlefield.html(html);
+		console.log(RedPieces);
+		//loop door de eerste 4 rijen
+		//bluepieces: loop door de laatste 4 rijen
 
 	})();
+
+	renderBattlefield();
 
 	return Battlefield;
 
