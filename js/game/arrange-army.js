@@ -2,41 +2,64 @@ var ARRANGE_ARMY = (function( $ , Battlefield ){ //alleen uitvoeren als er geen 
 
 	var checkAvailableOptions = function( $element ){
 
-		var Options = [],
+		var options = [],
 			$field 	= $element.parents(".field"),
 			fieldid = $field.attr("data-fieldid"),
 			field 	= BOARD.selectFieldById(fieldid),
 			piece 	= field.occupiedBy,
 			color 	= piece.color;
 
-		console.log(field);
-		console.log(piece);
-
 		for ( var y = 0; y < 12; y++ ) {
 			for ( var x = 0; x < 12; x++ ) {
 				if (Battlefield[y][x].occupied) {
 					if (Battlefield[y][x].occupiedBy.color == color) {
 						if (Battlefield[y][x].id != fieldid) {
-								Options.push(Battlefield[y][x].id);
+							options.push(Battlefield[y][x].id);
 						}
 					}
 				}
 			}
 		}
 
-		console.log(Options);
-
-		$element.addClass("selected");
+		field.selected = true;
+		highlightAvailableOptions( options );
 
 	};
 
+	var highlightAvailableOptions = function( options ){
+		
+		for (var x = 0, field, fieldid; x < options.length; x++ ) {
 
+			fieldid = options[x];
+			field = BOARD.selectFieldById(fieldid);
+			field.validOption = true;
+		
+		}
+
+		BOARD.render();
+		bindClickEvents();
+
+	};
+
+	var switchSelectedTo = function( fieldid ){
+
+	};
 
 	var bindClickEvents = function(){
 
 		$("#battlefield .field figure").on("click", function(event){
 
-			checkAvailableOptions( $(this) );
+			var $this = $(this);
+			if (!$this.parents(".field").hasClass("selected")) {
+				checkAvailableOptions( $this );
+			}
+			
+		});
+
+		$("#battlefield .field.valid-option").on("click", function(event){
+
+			console.log('switch to here');
+			//switchSelectedTo( fieldid );
 
 		});
 

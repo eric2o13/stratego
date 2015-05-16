@@ -162,6 +162,13 @@
 #battlefield .field.blocked {
 	background: #EEE;
 }
+#battlefield .field.selected {
+	background: yellow;
+}
+
+#battlefield .field.valid-option {
+	background: orange !important;
+}
 
 #battlefield .field span {
     color: #999;

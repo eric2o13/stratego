@@ -24,6 +24,8 @@ var BOARD = (function( $ ){
 		this.occupied	= false;
 		this.blocked 	= false;
 		this.occupiedBy = undefined;
+		this.selected 	= false;
+		this.validOption= false;
 
 	};
 
@@ -47,7 +49,11 @@ var BOARD = (function( $ ){
 				fieldclasses = "field col-sm-1 ";
 				fieldclasses += (field.blocked) ? " blocked" : "";
 				fieldclasses += (field.occupied) ? " occupied" : "";
+				fieldclasses += (field.validOption) ? " valid-option" : "";
+				fieldclasses += (field.selected) ? " selected" : "";
+
 				fieldattributes = "data-fieldid='"+field.id+"'";
+
 				contentattributes = (field.occupied) ? "class='"+field.occupiedBy.color+"' data-name='"+field.occupiedBy.name+"' ": "class='field-id "+field.id+"' ";
 				content = (field.occupied) ? "<figure "+contentattributes+">" + field.occupiedBy.rank + "</figure>" :"<span "+contentattributes+">" + field.id + "</span>";
 
