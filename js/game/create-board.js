@@ -194,7 +194,7 @@ var BOARD = (function( $ ){
 			g7.blocked = true;
 			g8.blocked = true;
 			
-	})();
+	})(); //dit kan korter
 
 	var placeRedPiecesOnBoard = (function(){
 

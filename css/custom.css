@@ -110,40 +110,40 @@
 }
 
 *[data-rowid="0"] .field:nth-child(1):before {
-	content: "1";
+	content: "0";
 }
 *[data-rowid="0"] .field:nth-child(2):before {
-	content: "2";
+	content: "1";
 }
 *[data-rowid="0"] .field:nth-child(3):before {
-	content: "3";
+	content: "2";
 }
 *[data-rowid="0"] .field:nth-child(4):before {
-	content: "4";
+	content: "3";
 }
 *[data-rowid="0"] .field:nth-child(5):before {
-	content: "5";
+	content: "4";
 }
 *[data-rowid="0"] .field:nth-child(6):before {
-	content: "6";
+	content: "5";
 }
 *[data-rowid="0"] .field:nth-child(7):before {
-	content: "7";
+	content: "6";
 }
 *[data-rowid="0"] .field:nth-child(8):before {
-	content: "8";
+	content: "7";
 }
 *[data-rowid="0"] .field:nth-child(9):before {
-	content: "9";
+	content: "8";
 }
 *[data-rowid="0"] .field:nth-child(10):before {
-	content: "10";
+	content: "9";
 }
 *[data-rowid="0"] .field:nth-child(11):before {
-	content: "11";
+	content: "10";
 }
 *[data-rowid="0"] .field:nth-child(12):before {
-	content: "12";
+	content: "11";
 }
 
 
