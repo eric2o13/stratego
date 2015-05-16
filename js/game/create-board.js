@@ -39,17 +39,18 @@ var BOARD = (function( $ ){
 	var renderBattlefield = function(){
 		
 		for (var row = 0, html = ""; row < Battlefield.length; row++ ) {
-			html += "<div class='row'>";
-			for ( var column = 0, classnames, field, content; column < Battlefield[row].length; column++ ) {
+			html += "<div class='row' data-rowid='"+row+"'>";
+			for ( var column = 0, classnames, field, content, attributes; column < Battlefield[row].length; column++ ) {
 
 				field = Battlefield[row][column];
 				
-				classnames = "field col-sm-1";
+				classnames = "field col-sm-1 ";
 				classnames += (field.blocked) ? " blocked" : "";
 				classnames += (field.occupied) ? " occupied" : "";
-				content = (field.occupied) ? field.occupiedBy.name : field.id;
+				attributes = "data-fieldid='"+field.id+"'";
+				content = (field.occupied) ? "<figure class='"+field.occupiedBy.color+"'>" + field.occupiedBy.name + "</figure>" : field.id;
 
-				html += "<div class='"+classnames+"'>" + content + "</div>";
+				html += "<div class='"+classnames+"' "+attributes+">" + content + "</div>";
 
 			}
 
@@ -195,7 +196,7 @@ var BOARD = (function( $ ){
 			
 	})();
 
-	var placePiecesOnBoard = (function(){
+	var placeRedPiecesOnBoard = (function(){
 
 		for ( var y = 0, i = 0, field; y < 5; y++ ) {
 			for ( var x = 0; x < 12; x++ ) {
@@ -211,12 +212,26 @@ var BOARD = (function( $ ){
 
 	})();
 
+	var placeBluePiecesOnBoard = (function(){
+
+		for ( var y = 11, i = 0, field; y > 6; y-- ) {
+			for ( var x = 0; x < 12; x++ ) {
+				field = Battlefield[y][x];
+				if (!field.blocked) {
+					piece = BluePieces[i];
+					field.occupied = true;
+					field.occupiedBy = piece;
+					i++;
+				}
+			}
+		}
+
+	})();
 
 	renderBattlefield();
-
 
 	return Battlefield;
 
 })(jQuery);
 
-console.log( BOARD );
+//console.log( BOARD );
