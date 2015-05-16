@@ -14,7 +14,8 @@ var BOARD = (function( $ ){
 	var $battlefield 	= $("#battlefield"),
 		Battlefield 	= [],
 		RedPieces 		= PIECES.red,
-		BluePieces 		= PIECES.blue;
+		BluePieces 		= PIECES.blue,
+		selectedFieldId	= undefined;
 
 	var Field = function( y, x, id ){
 
@@ -240,6 +241,8 @@ var BOARD = (function( $ ){
 	return {
 
 		'canvas': Battlefield,
+		
+		'selectedFieldId' : selectedFieldId,
 
 		selectFieldById: function(id) {
 

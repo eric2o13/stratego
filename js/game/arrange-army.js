@@ -1,4 +1,4 @@
-var ARRANGE_ARMY = (function( $ , Battlefield ){ //alleen uitvoeren als er geen WAR is..
+var ARRANGE_ARMY = (function( $ , Battlefield, selectedFieldId ){ //alleen uitvoeren als er geen WAR is..
 
 	var checkAvailableOptions = function( $element ){
 
@@ -22,6 +22,8 @@ var ARRANGE_ARMY = (function( $ , Battlefield ){ //alleen uitvoeren als er geen 
 		}
 
 		field.selected = true;
+		selectedFieldId = fieldid;
+
 		highlightAvailableOptions( options );
 
 	};
@@ -43,27 +45,53 @@ var ARRANGE_ARMY = (function( $ , Battlefield ){ //alleen uitvoeren als er geen 
 
 	var switchSelectedTo = function( fieldid ){
 
+		var originalFieldId = selectedFieldId,
+			newFieldId 		= fieldid,
+			originalField 	= BOARD.selectFieldById( originalFieldId ),
+			newField 		= BOARD.selectFieldById( newFieldId	);
+
+		console.log( "selected field id: " + selectedFieldId );
+
+		originalField.occupiedBy = newField.occupiedBy;
+		newField.occupiedBy = BOARD.selectFieldById( originalFieldId ).occupiedBy;
+
+
+		BOARD.render();
+
 	};
 
 	var bindClickEvents = function(){
 
 		$("#battlefield .field figure").on("click", function(event){
-
 			var $this = $(this);
 			if (!$this.parents(".field").hasClass("selected")) {
 				checkAvailableOptions( $this );
 			}
-			
 		});
 
 		$("#battlefield .field.valid-option").on("click", function(event){
 
-			console.log('switch to here');
-			//switchSelectedTo( fieldid );
+			var $this = $(this),
+				fieldid = $this.attr("data-fieldid");
+				
+			//securityChecks();
+			switchSelectedTo( fieldid ); 
 
 		});
 
 	};
+
+
+
+
+
+
+
+
+
+
+
+
 
 	$(document).on("ready", function(){
 
@@ -72,4 +100,4 @@ var ARRANGE_ARMY = (function( $ , Battlefield ){ //alleen uitvoeren als er geen 
 	});
 
 
-})( jQuery, BOARD.canvas );
+})( jQuery, BOARD.canvas, BOARD.selectFieldId );
