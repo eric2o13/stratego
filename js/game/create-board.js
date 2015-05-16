@@ -40,17 +40,18 @@ var BOARD = (function( $ ){
 		
 		for (var row = 0, html = ""; row < Battlefield.length; row++ ) {
 			html += "<div class='row' data-rowid='"+row+"'>";
-			for ( var column = 0, classnames, field, content, attributes; column < Battlefield[row].length; column++ ) {
+			for ( var column = 0, fieldclasses, field, content, fieldattributes; column < Battlefield[row].length; column++ ) {
 
 				field = Battlefield[row][column];
-				
-				classnames = "field col-sm-1 ";
-				classnames += (field.blocked) ? " blocked" : "";
-				classnames += (field.occupied) ? " occupied" : "";
-				attributes = "data-fieldid='"+field.id+"'";
-				content = (field.occupied) ? "<figure class='"+field.occupiedBy.color+"'>" + field.occupiedBy.name + "</figure>" : field.id;
+			
+				fieldclasses = "field col-sm-1 ";
+				fieldclasses += (field.blocked) ? " blocked" : "";
+				fieldclasses += (field.occupied) ? " occupied" : "";
+				fieldattributes = "data-fieldid='"+field.id+"'";
+				contentattributes = (field.occupied) ? "class='"+field.occupiedBy.color+"' data-name='"+field.occupiedBy.name+"' ": "class='field-id "+field.id+"' ";
+				content = (field.occupied) ? "<figure "+contentattributes+">" + field.occupiedBy.rank + "</figure>" :"<span "+contentattributes+">" + field.id + "</span>";
 
-				html += "<div class='"+classnames+"' "+attributes+">" + content + "</div>";
+				html += "<div class='"+fieldclasses+"' "+fieldattributes+">" + content + "</div>";
 
 			}
 
@@ -193,8 +194,8 @@ var BOARD = (function( $ ){
 			f8.blocked = true;
 			g7.blocked = true;
 			g8.blocked = true;
-			
-	})(); //dit kan korter
+
+	})();
 
 	var placeRedPiecesOnBoard = (function(){
 
@@ -230,7 +231,23 @@ var BOARD = (function( $ ){
 
 	renderBattlefield();
 
-	return Battlefield;
+	return {
+
+		'canvas': Battlefield,
+
+		selectFieldById: function(id) {
+
+			return selectFieldById(id);
+
+		},
+
+		render: function(){
+
+			renderBattlefield();
+		
+		}
+
+	};
 
 })(jQuery);
 

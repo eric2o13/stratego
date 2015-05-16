@@ -163,9 +163,17 @@
 	background: #EEE;
 }
 
-.occupied {
-	background: lime !important;
+#battlefield .field span {
+    color: #999;
+    font-size: 11px;
+    position: absolute;
+    right: 42px;
+    text-transform: uppercase;
+    top: 32px;
 }
+/*.occupied {
+	background: lime;
+}*/
 
 /*
 	Battlefield pieces
@@ -173,11 +181,13 @@
 ====================================================*/
 
 #battlefield .field figure {
-	display: inline-block;
-	width: 50px;
-	height: 50px;
-	font-size: 9px;
-	color: white;
+ 	color: white;
+    display: inline-block;
+    font-size: 22px;
+    height: 65px;
+    line-height: 65px;
+    width: 50px;
+    margin-top: 7px;
 }
 
 #battlefield .field figure.red {
@@ -185,4 +195,8 @@
 }
 #battlefield .field figure.blue {
 	background: blue;
+}
+
+#battlefield .field figure.selected {
+	border: 2px dashed lime;
 }
