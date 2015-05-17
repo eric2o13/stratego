@@ -21,22 +21,22 @@
       <h1>Stratego</h1>
       <section id="battlefield" class="container"></section>
 
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#startGame">
           <span class="glyphicon glyphicon-ok"></span> I'm done setting up pieces
         </button>
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="startGame" tabindex="-1" role="dialog" aria-labelledby="startGameLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">War is about to begin</h4>
+                <h4 class="modal-title" id="startGameLabel">War is about to begin</h4>
               </div>
               <div class="modal-body">
                 <p>You're about to start the game. Are you sure you are done setting up your pieces?</p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>No, I need to arrange my army</button>
-                <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span>Start game</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Start game</button>
               </div>
             </div>
           </div>

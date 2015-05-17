@@ -1,4 +1,4 @@
-var ARRANGE_ARMY = (function( $ , Battlefield, selectedFieldId ){ //alleen uitvoeren als er geen WAR is..
+var ARRANGE_ARMY = (function( $ , Battlefield, selectedFieldId ){
 
 	var checkAvailableOptions = function( $element ){
 
@@ -39,7 +39,6 @@ var ARRANGE_ARMY = (function( $ , Battlefield, selectedFieldId ){ //alleen uitvo
 		}
 
 		BOARD.render();
-		bindClickEvents();
 
 	};
 
@@ -52,16 +51,13 @@ var ARRANGE_ARMY = (function( $ , Battlefield, selectedFieldId ){ //alleen uitvo
 
 		console.log( pieceToMove.name + " on field " + originalField.id + " trades places with the " + pieceToTrade.name + " on field " + newField.id );
 		
+		/* set new values */
 		originalField.occupiedBy = newField.occupiedBy;
 		pieceToTrade.onField 	 = originalField.id;
 		newField.occupiedBy 	 = pieceToMove;
 		pieceToMove.onField 	 = fieldid;
 
-
-
-		/*
-			Reset values
-		*/
+		/* Reset active state & valid options */
 		BOARD.selectFieldById(selectedFieldId).selected = false;
 		for ( var y = 0; y < 12; y++ ) {
 			for (var x = 0; x < 12; x++ ){
@@ -69,25 +65,33 @@ var ARRANGE_ARMY = (function( $ , Battlefield, selectedFieldId ){ //alleen uitvo
 			}
 		}
 
-		/*
-			Re render board
-		*/
-
+		/* Re render board */
 		BOARD.render();
-		bindClickEvents();
 
 	};
 
-	var bindClickEvents = function(){
+	var startGame = (function(){
 
-		$("#battlefield .field figure").on("click", function(event){
+		console.log( 'the game has started' );
+		WAR.started = true;
+
+	});
+
+	//var bindClickEvents = function(){
+	$(document).on("ready", function(){
+
+		$(document).on('click', '#battlefield .field figure', function () {
+
 			var $this = $(this);
-			if (!$this.parents(".field").hasClass("selected") && !$(".field.selected").length) {
+
+			if ( WAR.started ) return false;
+			if ( !$this.parents(".field").hasClass("selected") && !$(".field.selected").length ) {
 				checkAvailableOptions( $this );
 			}
+
 		});
 
-		$("#battlefield .field.valid-option").on("click", function(event){
+		$(document).on('click', '#battlefield .field.valid-option', function () {
 
 			var $this = $(this),
 				fieldid = $this.attr("data-fieldid");
@@ -97,25 +101,13 @@ var ARRANGE_ARMY = (function( $ , Battlefield, selectedFieldId ){ //alleen uitvo
 
 		});
 
-	};
+		$(document).on('click', '#startGame button.btn-primary', function () {
 
+			startGame();
+			$("*[data-target='#startGame']").hide().remove();
 
-
-
-
-
-
-
-
-
-
-
-
-	$(document).on("ready", function(){
-
-		if ( !WAR.started ) bindClickEvents();
+		});
 
 	});
-
 
 })( jQuery, BOARD.canvas, BOARD.selectFieldId );
