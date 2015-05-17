@@ -45,18 +45,36 @@ var ARRANGE_ARMY = (function( $ , Battlefield, selectedFieldId ){ //alleen uitvo
 
 	var switchSelectedTo = function( fieldid ){
 
-		var originalFieldId = selectedFieldId,
-			newFieldId 		= fieldid,
-			originalField 	= BOARD.selectFieldById( originalFieldId ),
-			newField 		= BOARD.selectFieldById( newFieldId	);
+		var originalField = BOARD.selectFieldById(selectedFieldId),
+			pieceToMove   = BOARD.selectFieldById(selectedFieldId).occupiedBy,
+			newField 	  = BOARD.selectFieldById(fieldid),
+			pieceToTrade  = BOARD.selectFieldById(fieldid).occupiedBy;
 
-		console.log( "selected field id: " + selectedFieldId );
-
+		console.log( pieceToMove.name + " on field " + originalField.id + " trades places with the " + pieceToTrade.name + " on field " + newField.id );
+		
 		originalField.occupiedBy = newField.occupiedBy;
-		newField.occupiedBy = BOARD.selectFieldById( originalFieldId ).occupiedBy;
+		pieceToTrade.onField 	 = originalField.id;
+		newField.occupiedBy 	 = pieceToMove;
+		pieceToMove.onField 	 = fieldid;
 
+
+
+		/*
+			Reset values
+		*/
+		BOARD.selectFieldById(selectedFieldId).selected = false;
+		for ( var y = 0; y < 12; y++ ) {
+			for (var x = 0; x < 12; x++ ){
+				Battlefield[y][x].validOption = false;
+			}
+		}
+
+		/*
+			Re render board
+		*/
 
 		BOARD.render();
+		bindClickEvents();
 
 	};
 
@@ -64,7 +82,7 @@ var ARRANGE_ARMY = (function( $ , Battlefield, selectedFieldId ){ //alleen uitvo
 
 		$("#battlefield .field figure").on("click", function(event){
 			var $this = $(this);
-			if (!$this.parents(".field").hasClass("selected")) {
+			if (!$this.parents(".field").hasClass("selected") && !$(".field.selected").length) {
 				checkAvailableOptions( $this );
 			}
 		});
