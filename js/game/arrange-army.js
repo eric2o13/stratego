@@ -49,7 +49,7 @@ var ARRANGE_ARMY = (function( $ , Battlefield, selectedFieldId ){
 			newField 	  = BOARD.selectFieldById(fieldid),
 			pieceToTrade  = BOARD.selectFieldById(fieldid).occupiedBy;
 
-		console.log( pieceToMove.name + " on field " + originalField.id + " trades places with the " + pieceToTrade.name + " on field " + newField.id );
+		//console.log( pieceToMove.name + " on field " + originalField.id + " trades places with the " + pieceToTrade.name + " on field " + newField.id );
 		
 		/* set new values */
 		originalField.occupiedBy = newField.occupiedBy;
@@ -72,12 +72,11 @@ var ARRANGE_ARMY = (function( $ , Battlefield, selectedFieldId ){
 
 	var startGame = (function(){
 
-		console.log( 'the game has started' );
 		WAR.started = true;
+		ENGAGE_ARMY.init();
 
 	});
 
-	//var bindClickEvents = function(){
 	$(document).on("ready", function(){
 
 		$(document).on('click', '#battlefield .field figure', function () {
