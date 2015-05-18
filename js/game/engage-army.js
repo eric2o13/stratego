@@ -13,7 +13,12 @@ var ENGAGE_ARMY = (function($, Battlefield ){
 			canMoveRight,
 			CanMoveLeft;
 
+		if ( color != WAR.colorToMove ) {
+			
+			console.log('not your turn to move');
+			return false;
 		
+		}
 
 		if ( piece.canMove ) {
 
@@ -93,8 +98,10 @@ var ENGAGE_ARMY = (function($, Battlefield ){
 
 	};
 
-	var isInt = function(n) {
+	var isInt = function( n ) {
+
  	  return n % 1 === 0;
+
 	};
 
 	var engageToField = function( $field ) {
@@ -139,6 +146,8 @@ var ENGAGE_ARMY = (function($, Battlefield ){
 		}
 
 		BOARD.selectedFieldId = undefined;
+
+		switchPlayerTurns();
 		resetToDefaultState();
 		BOARD.render();
 
@@ -164,7 +173,7 @@ var ENGAGE_ARMY = (function($, Battlefield ){
 				
 			} else if ( defendingpiece.rank == "F") {
 
-				alert('je hebt gewonnen');
+				alert('je hebt gewonnen');	
 				var winningpiece = attackingpiece;
 
 			}
@@ -196,6 +205,23 @@ var ENGAGE_ARMY = (function($, Battlefield ){
 			bindClickEvents();
 		
 		}
+
+	});
+
+	var switchPlayerTurns = (function(){
+
+		WAR.colorToMove = (WAR.colorToMove == "red") ? "blue" : "red";
+		getAllOptions();
+
+	});
+
+	var getAllOptions = (function(){
+
+		var redPieces = PIECES.red,
+			bluePieces = PIECES.blue,
+			array = (WAR.colorToMove == "red") ? redPieces : bluePieces;
+
+		console.log(array);
 
 	});
 

@@ -55,7 +55,6 @@ var ARRANGE_ARMY = (function( $ , Battlefield, selectedFieldId ){
 		/* set new values */
 		originalField.occupiedBy = newField.occupiedBy;
 		pieceToTrade.onField 	 = originalField.id;
-
 		newField.occupiedBy 	 = pieceToMove;
 		pieceToMove.onField 	 = newField.id;
 
@@ -83,6 +82,7 @@ var ARRANGE_ARMY = (function( $ , Battlefield, selectedFieldId ){
 	var startGame = (function(){
 
 		WAR.started = true;
+		WAR.colorToMove = "red";
 		ENGAGE_ARMY.init();
 
 	});
