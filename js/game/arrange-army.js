@@ -22,6 +22,7 @@ var ARRANGE_ARMY = (function( $ , Battlefield, selectedFieldId ){
 		}
 
 		field.selected = true;
+		BOARD.selectedFieldId = field.id;
 		selectedFieldId = fieldid;
 
 		highlightAvailableOptions( options );
@@ -54,8 +55,12 @@ var ARRANGE_ARMY = (function( $ , Battlefield, selectedFieldId ){
 		/* set new values */
 		originalField.occupiedBy = newField.occupiedBy;
 		pieceToTrade.onField 	 = originalField.id;
+
 		newField.occupiedBy 	 = pieceToMove;
-		pieceToMove.onField 	 = fieldid;
+		pieceToMove.onField 	 = newField.id;
+
+		//console.log(pieceToMove.name + " is now on field " + pieceToMove.onField );
+		//console.log(pieceToTrade.name + " is now on field " + pieceToTrade.onField)
 
 		/* Reset active state & valid options */
 		BOARD.selectFieldById(selectedFieldId).selected = false;
@@ -64,6 +69,11 @@ var ARRANGE_ARMY = (function( $ , Battlefield, selectedFieldId ){
 				Battlefield[y][x].validOption = false;
 			}
 		}
+
+		//console.log("piece that moved: " , pieceToMove);
+		//console.log("traded places with: " , pieceToTrade );
+		//console.log("field piece moved to: ", newField );
+		//console.log("original field: ", originalField );
 
 		/* Re render board */
 		BOARD.render();
@@ -83,10 +93,12 @@ var ARRANGE_ARMY = (function( $ , Battlefield, selectedFieldId ){
 
 			var $this = $(this);
 
-			if ( WAR.started ) return false;
-			if ( !$this.parents(".field").hasClass("selected") && !$(".field.selected").length ) {
-				checkAvailableOptions( $this );
-			}
+			if ( !WAR.started ) {
+				if ( !$this.parents(".field").hasClass("selected") && !$(".field.selected").length ) {
+					checkAvailableOptions( $this );
+				}
+			} 
+
 
 		});
 
@@ -96,7 +108,7 @@ var ARRANGE_ARMY = (function( $ , Battlefield, selectedFieldId ){
 				fieldid = $this.attr("data-fieldid");
 				
 			//securityChecks();
-			switchSelectedTo( fieldid ); 
+			if ( !WAR.started) switchSelectedTo( fieldid ); 
 
 		});
 

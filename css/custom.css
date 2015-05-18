@@ -178,6 +178,7 @@
     text-transform: uppercase;
     top: 32px;
 }
+
 /*.occupied {
 	background: lime;
 }*/
@@ -195,6 +196,7 @@
     line-height: 65px;
     width: 50px;
     margin-top: 7px;
+    cursor: pointer;
 }
 
 #battlefield .field figure.red {

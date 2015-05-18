@@ -18,6 +18,7 @@ var PIECES = (function( $ ){
 		this.color		= color;
 		this.onBoard	= false;		
 		this.onField 	= undefined;
+		this.onBoard 	= true;
 		this.canMove	= (rank == "B" || rank == "F") ? false: true;
 		this.isScout	= (rank == 9) ? true : false;
 		this.isMiner 	= (rank == 8) ? true : false;

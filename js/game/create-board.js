@@ -55,7 +55,7 @@ var BOARD = (function( $ ){
 
 				fieldattributes = "data-fieldid='"+field.id+"'";
 
-				contentattributes = (field.occupied) ? "class='"+field.occupiedBy.color+"' data-name='"+field.occupiedBy.name+"' ": "class='field-id "+field.id+"' ";
+				contentattributes = (field.occupied) ? "class='"+field.occupiedBy.color + " " + field.occupiedBy.name + "' data-name='"+field.occupiedBy.name+"' ": "class='field-id "+field.id+"' ";
 				content = (field.occupied) ? "<figure "+contentattributes+">" + field.occupiedBy.rank + "</figure>" :"<span "+contentattributes+">" + field.id + "</span>";
 
 				html += "<div class='"+fieldclasses+"' "+fieldattributes+">" + content + "</div>";
@@ -241,7 +241,7 @@ var BOARD = (function( $ ){
 	return {
 
 		'canvas': Battlefield,
-		
+
 		'selectedFieldId' : selectedFieldId,
 
 		selectFieldById: function(id) {
