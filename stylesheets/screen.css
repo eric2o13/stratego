@@ -219,24 +219,25 @@
 /* line 152, ../css/game/_battlefield.scss */
 #battlefield .field {
   position: relative;
+  background: white;
   height: 80px;
   text-align: center;
   border-bottom: 1px solid #ccc;
   border-right: 1px solid #ccc;
 }
-/* line 159, ../css/game/_battlefield.scss */
+/* line 160, ../css/game/_battlefield.scss */
 #battlefield .field.blocked {
   background: #EEE;
 }
-/* line 163, ../css/game/_battlefield.scss */
+/* line 164, ../css/game/_battlefield.scss */
 #battlefield .field.selected {
   background: yellow;
 }
-/* line 167, ../css/game/_battlefield.scss */
+/* line 168, ../css/game/_battlefield.scss */
 #battlefield .field.valid-option {
   background: orange;
 }
-/* line 171, ../css/game/_battlefield.scss */
+/* line 172, ../css/game/_battlefield.scss */
 #battlefield .field span {
   color: #999;
   font-size: 11px;
@@ -274,12 +275,12 @@
   border: 2px solid green;
 }
 
-/* line 1, ../css/_custom-overrides.scss */
+/* line 4, ../css/_custom-overrides.scss */
 h1 {
   margin-bottom: 40px;
 }
 
-/* line 5, ../css/_custom-overrides.scss */
+/* line 8, ../css/_custom-overrides.scss */
 .btn {
   margin: 10px 0;
 }

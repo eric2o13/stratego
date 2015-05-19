@@ -55,6 +55,7 @@ var ENGAGE_ARMY = (function($, Battlefield ){
 					}
 					break;
 				}
+				if ( !piece.isScout ) break;
 			}
 
 			// check if piece can move right;( nog niet gechecked of t werkt )
@@ -66,6 +67,7 @@ var ENGAGE_ARMY = (function($, Battlefield ){
 					}
 					break;
 				}
+				if ( !piece.isScout ) break;
 			}
 
 			/*
