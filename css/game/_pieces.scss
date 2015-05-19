@@ -1,0 +1,29 @@
+
+/*
+	Pieces
+
+====================================================*/
+
+#battlefield .field figure {
+ 	color: white;
+    display: inline-block;
+    font-size: 22px;
+    height: 65px;
+    line-height: 65px;
+    width: 50px;
+    margin-top: 7px;
+    cursor: pointer;
+
+    &.red {
+    	background: red;
+    }
+
+    &.blue {
+    	background: blue;
+    }
+
+    &.selected {
+    	border: 2px solid green;
+    }
+
+}

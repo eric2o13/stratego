@@ -98,12 +98,6 @@ var ENGAGE_ARMY = (function($, Battlefield ){
 
 	};
 
-	var isInt = function( n ) {
-
- 	  return n % 1 === 0;
-
-	};
-
 	var engageToField = function( $field ) {
 
 		var fieldid  = $field.attr("data-fieldid"),
@@ -153,6 +147,72 @@ var ENGAGE_ARMY = (function($, Battlefield ){
 
 	};
 
+	var isInt = function( n ) {
+
+ 	  return n % 1 === 0;
+
+	};
+	
+	var canPieceMove = function( piece ){
+
+		var piece   = piece,
+			color 	= piece.color,
+			fieldid = piece.onField,
+			field	= BOARD.selectFieldById( fieldid ),
+			row		= field.row,
+			column	= field.column,
+			fieldNorth = Battlefield[row-1][column],
+			fieldSouth = Battlefield[row+1][column],
+			fieldEast = Battlefield[row][column+1],
+			fieldWest = Battlefield[row][column-1],
+			pieceCanMove = false;
+
+		//check if piece can move up
+		if ( !fieldNorth.blocked ) {
+			if ( fieldNorth.occupied ) {
+				if (fieldNorth.occupiedBy.color != color ) {
+					pieceCanMove = true;
+				}
+			} else {
+				pieceCanMove = true;
+			}
+		}
+
+		//check if piece can go south
+		if ( !fieldSouth.blocked ) {
+			if ( fieldSouth.occupied ) {
+				if (fieldSouth.occupiedBy.color != color ) {
+					pieceCanMove = true;
+				}
+			} else {
+				pieceCanMove = true;
+			}
+		}
+
+		if ( !fieldEast.blocked ) {
+			if ( fieldEast.occupied ) {
+				if (fieldEast.occupiedBy.color != color ) {
+					pieceCanMove = true;
+				}
+			} else {
+				pieceCanMove = true;
+			}
+		}
+
+		if ( !fieldWest.blocked ) {
+			if ( fieldWest.occupied ) {
+				if (fieldWest.occupiedBy.color != color ) {
+					pieceCanMove = true;
+				}
+			} else {
+				pieceCanMove = true;
+			}
+		}
+
+		return pieceCanMove;
+
+	};
+
 	var prepareForBattle = (function( attackingpiece, defendingpiece ){
 
 		if ( isInt(attackingpiece.rank) && isInt(defendingpiece.rank) ) {
@@ -173,7 +233,8 @@ var ENGAGE_ARMY = (function($, Battlefield ){
 				
 			} else if ( defendingpiece.rank == "F") {
 
-				alert('je hebt gewonnen');	
+				WAR.end();
+
 				var winningpiece = attackingpiece;
 
 			}
@@ -211,17 +272,24 @@ var ENGAGE_ARMY = (function($, Battlefield ){
 	var switchPlayerTurns = (function(){
 
 		WAR.colorToMove = (WAR.colorToMove == "red") ? "blue" : "red";
-		getAllOptions();
+		if ( !playerHasOptions() ) WAR.end(); 
 
 	});
 
-	var getAllOptions = (function(){
+	var playerHasOptions = (function(){
 
-		var redPieces = PIECES.red,
-			bluePieces = PIECES.blue,
-			array = (WAR.colorToMove == "red") ? redPieces : bluePieces;
+		var array = ( WAR.colorToMove == "red" ) ? PIECES.red : PIECES.blue;
+		for ( var x = 0, piece; x < array.length; x++ ) {
+			
+			piece = array[x];
+			
+			if (piece.canMove && piece.onBoard) {
+				if ( canPieceMove(piece) ) {
+					return true;
 
-		console.log(array);
+				}
+			}
+		}
 
 	});
 
@@ -253,6 +321,7 @@ var ENGAGE_ARMY = (function($, Battlefield ){
 		init: function(){
 
 			initializeArmy();
+			if ( !playerHasOptions() ) WAR.end(); 
 
 		}
 

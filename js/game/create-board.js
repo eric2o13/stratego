@@ -211,6 +211,7 @@ var BOARD = (function( $ ){
 				field = Battlefield[y][x];
 				if (!field.blocked) {
 					piece = RedPieces[i];
+					piece.onField = field.id;
 					field.occupied = true;
 					field.occupiedBy = piece;
 					i++;
@@ -227,6 +228,7 @@ var BOARD = (function( $ ){
 				field = Battlefield[y][x];
 				if (!field.blocked) {
 					piece = BluePieces[i];
+					piece.onField = field.id;
 					field.occupied = true;
 					field.occupiedBy = piece;
 					i++;
