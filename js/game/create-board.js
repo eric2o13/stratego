@@ -261,5 +261,3 @@ var BOARD = (function( $ ){
 	};
 
 })(jQuery);
-
-//console.log( BOARD );

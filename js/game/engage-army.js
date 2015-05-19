@@ -288,7 +288,6 @@ var ENGAGE_ARMY = (function($, Battlefield ){
 			if (piece.canMove && piece.onBoard) {
 				if ( canPieceMove(piece) ) {
 					return true;
-
 				}
 			}
 		}
