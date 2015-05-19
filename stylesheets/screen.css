@@ -1,5 +1,285 @@
-/* Welcome to Compass.
- * In this file you should write your main styles. (or centralize your imports)
- * Import this file using the following HTML or equivalent:
- * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-/* Hier kan je typen */
+/*
+	Battlefield
+
+====================================================*/
+/* line 18, ../css/game/_battlefield.scss */
+*[data-rowid="0"]:before,
+*[data-rowid="1"]:before,
+*[data-rowid="2"]:before,
+*[data-rowid="3"]:before,
+*[data-rowid="4"]:before,
+*[data-rowid="5"]:before,
+*[data-rowid="6"]:before,
+*[data-rowid="7"]:before,
+*[data-rowid="8"]:before,
+*[data-rowid="9"]:before,
+*[data-rowid="10"]:before,
+*[data-rowid="11"]:before {
+  background: orange none repeat scroll 0 0;
+  height: 79px;
+  left: -25px;
+  line-height: 79px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 24px;
+}
+
+/* line 29, ../css/game/_battlefield.scss */
+*[data-rowid="0"] {
+  position: relative;
+}
+
+/* line 33, ../css/game/_battlefield.scss */
+*[data-rowid="0"]:before {
+  content: "0";
+}
+
+/* line 36, ../css/game/_battlefield.scss */
+*[data-rowid="1"] {
+  position: relative;
+}
+
+/* line 39, ../css/game/_battlefield.scss */
+*[data-rowid="1"]:before {
+  content: "1";
+}
+
+/* line 42, ../css/game/_battlefield.scss */
+*[data-rowid="2"] {
+  position: relative;
+}
+
+/* line 45, ../css/game/_battlefield.scss */
+*[data-rowid="2"]:before {
+  content: "2";
+}
+
+/* line 48, ../css/game/_battlefield.scss */
+*[data-rowid="3"] {
+  position: relative;
+}
+
+/* line 51, ../css/game/_battlefield.scss */
+*[data-rowid="3"]:before {
+  content: "3";
+}
+
+/* line 54, ../css/game/_battlefield.scss */
+*[data-rowid="4"] {
+  position: relative;
+}
+
+/* line 57, ../css/game/_battlefield.scss */
+*[data-rowid="4"]:before {
+  content: "4";
+}
+
+/* line 60, ../css/game/_battlefield.scss */
+*[data-rowid="5"] {
+  position: relative;
+}
+
+/* line 63, ../css/game/_battlefield.scss */
+*[data-rowid="5"]:before {
+  content: "5";
+}
+
+/* line 66, ../css/game/_battlefield.scss */
+*[data-rowid="6"] {
+  position: relative;
+}
+
+/* line 69, ../css/game/_battlefield.scss */
+*[data-rowid="6"]:before {
+  content: "6";
+}
+
+/* line 72, ../css/game/_battlefield.scss */
+*[data-rowid="7"] {
+  position: relative;
+}
+
+/* line 75, ../css/game/_battlefield.scss */
+*[data-rowid="7"]:before {
+  content: "7";
+}
+
+/* line 78, ../css/game/_battlefield.scss */
+*[data-rowid="8"] {
+  position: relative;
+}
+
+/* line 81, ../css/game/_battlefield.scss */
+*[data-rowid="8"]:before {
+  content: "8";
+}
+
+/* line 84, ../css/game/_battlefield.scss */
+*[data-rowid="9"] {
+  position: relative;
+}
+
+/* line 87, ../css/game/_battlefield.scss */
+*[data-rowid="9"]:before {
+  content: "9";
+}
+
+/* line 90, ../css/game/_battlefield.scss */
+*[data-rowid="10"] {
+  position: relative;
+}
+
+/* line 93, ../css/game/_battlefield.scss */
+*[data-rowid="10"]:before {
+  content: "10";
+}
+
+/* line 96, ../css/game/_battlefield.scss */
+*[data-rowid="11"] {
+  position: relative;
+}
+
+/* line 99, ../css/game/_battlefield.scss */
+*[data-rowid="11"]:before {
+  content: "11";
+}
+
+/* line 103, ../css/game/_battlefield.scss */
+*[data-rowid="0"] .field::before {
+  background: orange none repeat scroll 0 0;
+  height: 24px;
+  left: 1px;
+  line-height: 24px;
+  position: absolute;
+  top: -26px;
+  width: 100%;
+}
+
+/* line 113, ../css/game/_battlefield.scss */
+*[data-rowid="0"] .field:nth-child(1):before {
+  content: "0";
+}
+
+/* line 116, ../css/game/_battlefield.scss */
+*[data-rowid="0"] .field:nth-child(2):before {
+  content: "1";
+}
+
+/* line 119, ../css/game/_battlefield.scss */
+*[data-rowid="0"] .field:nth-child(3):before {
+  content: "2";
+}
+
+/* line 122, ../css/game/_battlefield.scss */
+*[data-rowid="0"] .field:nth-child(4):before {
+  content: "3";
+}
+
+/* line 125, ../css/game/_battlefield.scss */
+*[data-rowid="0"] .field:nth-child(5):before {
+  content: "4";
+}
+
+/* line 128, ../css/game/_battlefield.scss */
+*[data-rowid="0"] .field:nth-child(6):before {
+  content: "5";
+}
+
+/* line 131, ../css/game/_battlefield.scss */
+*[data-rowid="0"] .field:nth-child(7):before {
+  content: "6";
+}
+
+/* line 134, ../css/game/_battlefield.scss */
+*[data-rowid="0"] .field:nth-child(8):before {
+  content: "7";
+}
+
+/* line 137, ../css/game/_battlefield.scss */
+*[data-rowid="0"] .field:nth-child(9):before {
+  content: "8";
+}
+
+/* line 140, ../css/game/_battlefield.scss */
+*[data-rowid="0"] .field:nth-child(10):before {
+  content: "9";
+}
+
+/* line 143, ../css/game/_battlefield.scss */
+*[data-rowid="0"] .field:nth-child(11):before {
+  content: "10";
+}
+
+/* line 146, ../css/game/_battlefield.scss */
+*[data-rowid="0"] .field:nth-child(12):before {
+  content: "11";
+}
+
+/* line 152, ../css/game/_battlefield.scss */
+#battlefield .field {
+  position: relative;
+  height: 80px;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+/* line 159, ../css/game/_battlefield.scss */
+#battlefield .field.blocked {
+  background: #EEE;
+}
+/* line 163, ../css/game/_battlefield.scss */
+#battlefield .field.selected {
+  background: yellow;
+}
+/* line 167, ../css/game/_battlefield.scss */
+#battlefield .field.valid-option {
+  background: orange;
+}
+/* line 171, ../css/game/_battlefield.scss */
+#battlefield .field span {
+  color: #999;
+  font-size: 11px;
+  position: absolute;
+  right: 42px;
+  text-transform: uppercase;
+  top: 32px;
+}
+
+/*
+	Pieces
+
+====================================================*/
+/* line 7, ../css/game/_pieces.scss */
+#battlefield .field figure {
+  color: white;
+  display: inline-block;
+  font-size: 22px;
+  height: 65px;
+  line-height: 65px;
+  width: 50px;
+  margin-top: 7px;
+  cursor: pointer;
+}
+/* line 17, ../css/game/_pieces.scss */
+#battlefield .field figure.red {
+  background: red;
+}
+/* line 21, ../css/game/_pieces.scss */
+#battlefield .field figure.blue {
+  background: blue;
+}
+/* line 25, ../css/game/_pieces.scss */
+#battlefield .field figure.selected {
+  border: 2px solid green;
+}
+
+/* line 1, ../css/_custom-overrides.scss */
+h1 {
+  margin-bottom: 40px;
+}
+
+/* line 5, ../css/_custom-overrides.scss */
+.btn {
+  margin: 10px 0;
+}
