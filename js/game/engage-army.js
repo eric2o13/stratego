@@ -169,7 +169,6 @@ var ENGAGE_ARMY = (function($, Battlefield ){
 			fieldWest = Battlefield[row][column-1],
 			pieceCanMove = false;
 
-		//check if piece can move up
 		if ( !fieldNorth.blocked ) {
 			if ( fieldNorth.occupied ) {
 				if (fieldNorth.occupiedBy.color != color ) {
@@ -180,7 +179,6 @@ var ENGAGE_ARMY = (function($, Battlefield ){
 			}
 		}
 
-		//check if piece can go south
 		if ( !fieldSouth.blocked ) {
 			if ( fieldSouth.occupied ) {
 				if (fieldSouth.occupiedBy.color != color ) {

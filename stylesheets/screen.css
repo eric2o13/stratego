@@ -248,29 +248,213 @@
 }
 
 /*
+.container {
+  width: 300px;
+  height: 200px;
+  position: relative;
+  perspective: 1000px;
+}
+
+#box {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+}
+
+
+#box.show-front  { transform: translateZ(  -50px ) rotateY(    0deg ); }
+#box.show-back   { transform: translateZ(  -50px ) rotateX( -180deg ); }
+#box.show-right  { transform: translateZ( -150px ) rotateY(  -90deg ); }
+#box.show-left   { transform: translateZ( -150px ) rotateY(   90deg ); }
+#box.show-top    { transform: translateZ( -100px ) rotateX(  -90deg ); }
+#box.show-bottom { transform: translateZ( -100px ) rotateX(   90deg ); }
+*/
+/* line 211, ../css/game/_battlefield.scss */
+main.container {
+  perspective: 2000px;
+}
+
+/* line 215, ../css/game/_battlefield.scss */
+#battlefield {
+  transform: rotateY(0deg) rotateX(70deg) translateZ(10px);
+}
+
+/* line 219, ../css/game/_battlefield.scss */
+.field {
+  -webkit-perspective: 1200px;
+  -moz-perspective: 1200px;
+  -o-perspective: 1200px;
+  perspective: 1200px;
+  position: relative;
+  background: white;
+  height: 80px;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+
+/* line 233, ../css/game/_battlefield.scss */
+.field figure {
+  width: 60px;
+  height: 60px;
+  position: absolute !important;
+  bottom: 1px;
+  left: 10px;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+    /*
+    .field figure > div {
+      display: block;
+      position: absolute;
+      line-height: 16px;
+      font-size:16px;
+      text-align: center;
+      font-weight: bold;
+      color: white;
+    }
+
+    .field figure .bottom {
+		width: 60px;
+		height: 60px;
+		background: green;
+		top: 10px;
+		left: 17px;
+    }
+
+	.field figure .top {
+	  width: 60px;
+	  height: 60px;
+	  background: lime;
+	  transform: rotateX(   90deg ) translateZ( 100px );
+	}
+
+    .field figure .front,
+    .field figure .back {
+      width: 80px;
+      height: 120px;
+    }
+
+    .field figure .right,
+    .field figure .left {
+      width: 96px;
+      height: 120px;
+      left: 100px;
+    }
+
+    .field figure .top,
+    .field figure .bottom {
+      width: 80px;
+      height: 96px;
+      top: 50px;
+      line-height: 96px;
+    }*/
+/*
+    .field figure .front  { background: hsla( 000, 100%, 50%, 0.7 ); }
+    .field figure .back   { background: hsla( 160, 100%, 50%, 0.7 ); }
+    .field figure .right  { background: hsla( 120, 100%, 50%, 0.7 ); }
+    .field figure .left   { background: hsla( 180, 100%, 50%, 0.7 ); }
+    .field figure .top    { background: hsla( 240, 100%, 50%, 0.7 ); }
+    .field figure .bottom { background: hsla( 300, 100%, 50%, 0.7 ); }
+
+    .field figure .front  {
+      -webkit-transform: translateZ( 50px );
+         -moz-transform: translateZ( 50px );
+           -o-transform: translateZ( 50px );
+              transform: translateZ( 50px );
+    }
+    .field figure .back   {
+      -webkit-transform: rotateX( -180deg ) translateZ(  50px );
+         -moz-transform: rotateX( -180deg ) translateZ(  50px );
+           -o-transform: rotateX( -180deg ) translateZ(  50px );
+              transform: rotateX( -180deg ) translateZ(  50px );
+    }
+    .field figure .right {
+      -webkit-transform: rotateY(   90deg ) translateZ( -68px );
+         -moz-transform: rotateY(   90deg ) translateZ( -68px );
+           -o-transform: rotateY(   90deg ) translateZ( -68px );
+              transform: rotateY(   90deg ) translateZ( -68px );
+    }
+    .field figure .left {
+      -webkit-transform: rotateY(  -90deg ) translateZ( 150px );
+         -moz-transform: rotateY(  -90deg ) translateZ( 150px );
+           -o-transform: rotateY(  -90deg ) translateZ( 150px );
+              transform: rotateY(  -90deg ) translateZ( 150px );
+    }
+    .field figure .top {
+      -webkit-transform: rotateX(   90deg ) translateZ( 100px );
+         -moz-transform: rotateX(   90deg ) translateZ( 100px );
+           -o-transform: rotateX(   90deg ) translateZ( 100px );
+              transform: rotateX(   90deg ) translateZ( 100px );
+    }
+    .field figure .bottom {
+      -webkit-transform: rotateX(  -90deg ) translateZ( 100px );
+         -moz-transform: rotateX(  -90deg ) translateZ( 100px );
+           -o-transform: rotateX(  -90deg ) translateZ( 100px );
+              transform: rotateX(  -90deg ) translateZ( 100px );
+    }
+	*/
+    /*
+    .field figure.show-front {
+      -webkit-transform: translateZ(  -50px );
+         -moz-transform: translateZ(  -50px );
+           -o-transform: translateZ(  -50px );
+              transform: translateZ(  -50px );
+    }
+    .field figure.show-back {
+      -webkit-transform: translateZ( -50px ) rotateX( -180deg );
+         -moz-transform: translateZ( -50px ) rotateX( -180deg );
+           -o-transform: translateZ( -50px ) rotateX( -180deg );
+              transform: translateZ( -50px ) rotateX( -180deg );
+    }
+    .field figure.show-right {
+      -webkit-transform: translateZ( -150px ) rotateY(  -90deg );
+         -moz-transform: translateZ( -150px ) rotateY(  -90deg );
+           -o-transform: translateZ( -150px ) rotateY(  -90deg );
+              transform: translateZ( -150px ) rotateY(  -90deg );
+    }
+    .field figure.show-left {
+      -webkit-transform: translateZ( -150px ) rotateY(   90deg );
+         -moz-transform: translateZ( -150px ) rotateY(   90deg );
+           -o-transform: translateZ( -150px ) rotateY(   90deg );
+              transform: translateZ( -150px ) rotateY(   90deg );
+    }
+    .field figure.show-top {
+      -webkit-transform: translateZ( -100px ) rotateX(  -90deg );
+         -moz-transform: translateZ( -100px ) rotateX(  -90deg );
+           -o-transform: translateZ( -100px ) rotateX(  -90deg );
+              transform: translateZ( -100px ) rotateX(  -90deg );
+    }
+    .field figure.show-bottom {
+      -webkit-transform: translateZ( -100px ) rotateX(   90deg );
+         -moz-transform: translateZ( -100px ) rotateX(   90deg );
+           -o-transform: translateZ( -100px ) rotateX(   90deg );
+              transform: translateZ( -100px ) rotateX(   90deg );
+    }
+
+*/
+/*
 	Pieces
 
 ====================================================*/
 /* line 7, ../css/game/_pieces.scss */
 #battlefield .field figure {
-  color: white;
-  display: inline-block;
-  font-size: 22px;
-  height: 65px;
-  line-height: 65px;
-  width: 50px;
-  margin-top: 7px;
-  cursor: pointer;
+  display: block;
+  position: relative;
 }
-/* line 17, ../css/game/_pieces.scss */
+/* line 11, ../css/game/_pieces.scss */
 #battlefield .field figure.red {
   background: red;
 }
-/* line 21, ../css/game/_pieces.scss */
+/* line 15, ../css/game/_pieces.scss */
 #battlefield .field figure.blue {
   background: blue;
 }
-/* line 25, ../css/game/_pieces.scss */
+/* line 19, ../css/game/_pieces.scss */
 #battlefield .field figure.selected {
   border: 2px solid green;
 }

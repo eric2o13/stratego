@@ -56,7 +56,9 @@ var BOARD = (function( $ ){
 				fieldattributes = "data-fieldid='"+field.id+"'";
 
 				contentattributes = (field.occupied) ? "class='"+field.occupiedBy.color + " " + field.occupiedBy.name + "' data-name='"+field.occupiedBy.name+"' ": "class='field-id "+field.id+"' ";
-				content = (field.occupied) ? "<figure "+contentattributes+">" + field.occupiedBy.rank + "</figure>" :"<span "+contentattributes+">" + field.id + "</span>";
+
+				figurelayout = (field.occupied) ?  "<div class='front'>"+ field.occupiedBy.rank + "</div><div class='back'></div><div class='right'></div><div class='left'></div><div class='top'></div><div class='bottom'></div>": "";
+				content = (field.occupied) ? "<figure "+contentattributes+">" + figurelayout + "</figure>" :"<span "+contentattributes+">" + field.id + "</span>";
 
 				html += "<div class='"+fieldclasses+"' "+fieldattributes+">" + content + "</div>";
 
