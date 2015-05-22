@@ -275,6 +275,7 @@ var ENGAGE_ARMY = (function($, Battlefield ){
 
 		WAR.colorToMove = (WAR.colorToMove == "red") ? "blue" : "red";
 		if ( !playerHasOptions() ) WAR.end(); 
+		if (WAR.colorToMove == "blue") CPU.move();
 
 	});
 
@@ -324,6 +325,10 @@ var ENGAGE_ARMY = (function($, Battlefield ){
 			initializeArmy();
 			if ( !playerHasOptions() ) WAR.end(); 
 
+		},
+
+		canPieceMove: function( piece ){
+			return canPieceMove( piece );
 		}
 
 	};
