@@ -1,6 +1,6 @@
 var ENGAGE_ARMY = (function($, Battlefield ){
 
-	var checkOptions = function( $piece ) {
+	var checkOptions = function( $piece , mode ) {
 
 		var options = [], 
 			$field 	= $piece.parents(".field"),
@@ -8,10 +8,13 @@ var ENGAGE_ARMY = (function($, Battlefield ){
 			field 	= BOARD.selectFieldById(fieldid),
 			piece	= field.occupiedBy,
 			color   = piece.color,
+			totalOptions = {},
 			canMoveUp, 
 			canMoveDown,
 			canMoveRight,
 			CanMoveLeft;
+
+		//console.log(mode);
 
 		if ( color != WAR.colorToMove ) {
 			
@@ -70,11 +73,27 @@ var ENGAGE_ARMY = (function($, Battlefield ){
 				if ( !piece.isScout ) break;
 			}
 
-			/*
-  				Highlight the available options
-			*/
+			/* Highlight the available options */
+			if (mode == "highlight") {
+				( options.length ) ?
+					highlightOptions( field, options ):
+				 	console.log('there are no available options for this piece');
+			}
 
-			( options.length ) ? highlightOptions( field, options ): console.log('there are no available options for this piece');
+			/*  Return the available options */
+			if (mode == "return") {
+
+				totalOptions = {
+
+					piece: piece,
+					fromField: fieldid,
+					toFields: options
+
+				};
+
+				return totalOptions;
+			
+			}
 
 		} else {
 
@@ -106,43 +125,66 @@ var ENGAGE_ARMY = (function($, Battlefield ){
 			newField = BOARD.selectFieldById( fieldid ),
 			selectedField = BOARD.selectFieldById( BOARD.selectedFieldId ),
 			piece = selectedField.occupiedBy,
+			move = {},
+			indicator,
 			attackingpiece,
 			defendingpiece,
-			winningpiece;
+			winningpiece,
+			losingpiece;
 
 		if ( !newField.occupied ) {
 
+			indicator = "=>";
 			newField.occupied = true;
 			newField.occupiedBy = piece;
 			selectedField.occupied = false;
 			selectedField.occupiedBy = undefined;
+			piece.onField = fieldid;
 
 		} else {
 
 			attackingpiece = piece;
 			defendingpiece = newField.occupiedBy;
-			winningpiece   = prepareForBattle( attackingpiece, defendingpiece );
+			winningpiece  = prepareForBattle( attackingpiece, defendingpiece ),
+			losingpiece = (winningpiece == attackingpiece) ? defendingpiece : attackingpiece;
 
 			if ( winningpiece == 'none' ) {
 
+				indicator = "--";
 				newField.occupied = false;
 				newField.occupiedBy = undefined;
 				selectedField.occupied = false;
 				selectedField.occupiedBy = undefined;
+				attackingpiece.onField = defendingpiece.onField = undefined;
+				attackingpiece.onBoard = defendingpiece.onBoard = false;
 
 			} else {
 
+				indicator = (winningpiece == attackingpiece) ? "+-" : "-+";
 				newField.occupied = true;
 				newField.occupiedBy = winningpiece;
 				selectedField.occupied = false;
 				selectedField.occupiedBy = undefined;
+				winningpiece.onField = fieldid;
+				losingpiece.onField = undefined;
+				losingpiece.onBoard = false;
 
 			}
 
 		}
 
+		move = {
+			index: WAR.moveIndex,
+			indicator: indicator,
+			fromField: BOARD.selectedFieldId,
+			toField: fieldid,
+			movingPiece: piece
+		};
+
+		//reset Selected
 		BOARD.selectedFieldId = undefined;
 
+		WAR.saveMove( move );
 		switchPlayerTurns();
 		resetToDefaultState();
 		BOARD.render();
@@ -265,6 +307,8 @@ var ENGAGE_ARMY = (function($, Battlefield ){
 		if ( WAR.started ) {
 
 			console.log('The war has begon. Your army may engage!');
+
+			//hier moeten de actieve states van het opzetten van je army ook gereset worden
 			bindClickEvents();
 		
 		}
@@ -274,6 +318,8 @@ var ENGAGE_ARMY = (function($, Battlefield ){
 	var switchPlayerTurns = (function(){
 
 		WAR.colorToMove = (WAR.colorToMove == "red") ? "blue" : "red";
+		
+		WAR.renderMoveList();
 		if ( !playerHasOptions() ) WAR.end(); 
 		if (WAR.colorToMove == "blue") CPU.move();
 
@@ -301,7 +347,7 @@ var ENGAGE_ARMY = (function($, Battlefield ){
 
 			if ( WAR.started ) {
 				if ( !$(".valid-option").length ) {
-					checkOptions( $(this) );
+					checkOptions( $(this) , "highlight" );
 				} else {
 					resetToDefaultState();
 					BOARD.render();
@@ -329,6 +375,12 @@ var ENGAGE_ARMY = (function($, Battlefield ){
 
 		canPieceMove: function( piece ){
 			return canPieceMove( piece );
+		},
+
+		checkOptions: function ( $piece, mode ) {
+
+			return checkOptions( $piece, mode );
+
 		}
 
 	};

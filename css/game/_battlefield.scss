@@ -148,7 +148,8 @@
 }
 
 #battlefield {
-
+	margin-top: 50px;
+	
 	.field {
 		position: relative;
 		background: white;
@@ -180,4 +181,13 @@
 
 	}
 
+}
+
+
+#movelist {
+	clear: both;
+	margin-top: 10px;
+	margin-bottom: 60px;
+	background: #EEE;
+	padding: 20px;
 }

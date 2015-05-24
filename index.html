@@ -23,30 +23,37 @@
   <body>
     <main class="container">
       <h1>Stratego</h1>
+      
+      <div class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Move history</a>
+        <section id="movelist" class="dropdown-menu" role="menu" aria-labelledby="dLabel"></section>
+      </div>
       <section id="battlefield" class="container"></section>
 
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#startGame">
-          <span class="glyphicon glyphicon-ok"></span> I'm done setting up pieces
-        </button>
-        <div class="modal fade" id="startGame" tabindex="-1" role="dialog" aria-labelledby="startGameLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="startGameLabel">War is about to begin</h4>
-              </div>
-              <div class="modal-body">
-                <p>You're about to start the game. Are you sure you are done setting up your pieces?</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>No, I need to arrange my army</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Start game</button>
-              </div>
+      <!-- popup -->
+      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#startGame">
+        <span class="glyphicon glyphicon-ok"></span> I'm done setting up pieces
+      </button>
+      <div class="modal fade" id="startGame" tabindex="-1" role="dialog" aria-labelledby="startGameLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="startGameLabel">War is about to begin</h4>
+            </div>
+            <div class="modal-body">
+              <p>You're about to start the game. Are you sure you are done setting up your pieces?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>No, I need to arrange my army</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Start game</button>
             </div>
           </div>
         </div>
+      </div>
 
     </main>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <!-- init scripts -->

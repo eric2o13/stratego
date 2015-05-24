@@ -216,7 +216,11 @@
   content: "11";
 }
 
-/* line 152, ../css/game/_battlefield.scss */
+/* line 150, ../css/game/_battlefield.scss */
+#battlefield {
+  margin-top: 50px;
+}
+/* line 153, ../css/game/_battlefield.scss */
 #battlefield .field {
   position: relative;
   background: white;
@@ -225,19 +229,19 @@
   border-bottom: 1px solid #ccc;
   border-right: 1px solid #ccc;
 }
-/* line 160, ../css/game/_battlefield.scss */
+/* line 161, ../css/game/_battlefield.scss */
 #battlefield .field.blocked {
   background: #EEE;
 }
-/* line 164, ../css/game/_battlefield.scss */
+/* line 165, ../css/game/_battlefield.scss */
 #battlefield .field.selected {
   background: yellow;
 }
-/* line 168, ../css/game/_battlefield.scss */
+/* line 169, ../css/game/_battlefield.scss */
 #battlefield .field.valid-option {
   background: orange;
 }
-/* line 172, ../css/game/_battlefield.scss */
+/* line 173, ../css/game/_battlefield.scss */
 #battlefield .field span {
   color: #999;
   font-size: 11px;
@@ -245,6 +249,15 @@
   right: 42px;
   text-transform: uppercase;
   top: 32px;
+}
+
+/* line 187, ../css/game/_battlefield.scss */
+#movelist {
+  clear: both;
+  margin-top: 10px;
+  margin-bottom: 60px;
+  background: #EEE;
+  padding: 20px;
 }
 
 /*
