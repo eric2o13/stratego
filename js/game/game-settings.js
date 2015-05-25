@@ -11,8 +11,6 @@ var WAR = (function( $ ){
 		movehistory.push( move );
 		moveIndex++;
 
-		//console.log(movehistory);
-
 	});
 
 	var renderMoveList = (function( ){

@@ -377,9 +377,9 @@ var ENGAGE_ARMY = (function($, Battlefield ){
 			return canPieceMove( piece );
 		},
 
-		checkOptions: function ( $piece, mode ) {
+		engageToField: function ( $field ) {
 
-			return checkOptions( $piece, mode );
+			engageToField( $field );
 
 		}
 

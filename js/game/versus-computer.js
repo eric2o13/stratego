@@ -1,24 +1,72 @@
 var CPU = (function($, Battlefield){
 
+	var spottedPieces = []; // [ knownPiece: { rank: 2, onField: e2 } ]
+
 	var getOptions = function(){
 
 		var pieces = PIECES.blue;
-		for ( var x = 0, potentialMoves = [], piece, $piece, $field; x < pieces.length; x++ ) {
+		for ( var x = 0, piecesWithOptions = [], piece, $piece, $field; x < pieces.length; x++ ) {
 
 			piece = pieces[x];
 			if (piece.canMove && piece.onBoard) {
 				if (pieceHasOptions(piece)) {
-
-					console.log(pieceHasOptions(piece));
-				
+					piecesWithOptions.push( pieceHasOptions(piece) );
 				} 
 			}
 
 		}
 
-		//console.log(potentialMoves);
+		playBestMove( piecesWithOptions );
 
 	};
+
+	var playBestMove = (function(piecesWithOptions){
+
+		//console.log(piecesWithOptions);
+		
+		var movelist = [];
+
+		for (var key in piecesWithOptions) {
+			if (piecesWithOptions.hasOwnProperty(key)) {
+
+				var obj = piecesWithOptions[key].options;
+				var piece = piecesWithOptions[key].piece;
+
+				for (var prop in obj) {
+					if(obj.hasOwnProperty(prop) ){
+						movelist.push( [piece, piece.onField, obj[prop] ]);
+						//console.log(piece.name + " can move from " + piece.onField + " to field " + obj[prop] );
+						//console.log(prop + " = " + obj[prop]);
+					}
+				}
+			}
+		}
+
+		console.log(movelist);
+
+		var random = (Math.round(Math.random()*movelist.length) + 1) - 1;
+		console.log( movelist[random][0], movelist[random][1], movelist[random][2]  );
+
+		play( movelist[random][0], movelist[random][1], movelist[random][2]  );
+		//console.log(random);
+		//we moeten nog wel ff uitschakelen dat de blauwe elementen niet aanklikbaar zijn
+		// lijkt te werken, maar gaat soms pans,
+		//denk een fout in de randomizer
+		//maar nu ga ik silicon valley checken
+		// momenteel speelt de computer dus puur random moves.
+
+	});
+
+	var play = (function( piece, fromfieldid, tofieldid ){
+		
+		var $field = $(".field[data-fieldid='"+tofieldid+"']");
+
+		BOARD.selectedFieldId = fromfieldid;
+		ENGAGE_ARMY.engageToField($field);
+
+		console.log("play " + piece.name + "from field " + fromfieldid + " to field " + tofieldid + " and switch turns");
+
+	});
 
 	var pieceHasOptions = (function( piece ){
 
@@ -52,9 +100,8 @@ var CPU = (function($, Battlefield){
 
 				if (canMoveUp) {
 					for (var x = row - 1; x >= 0; x-- ) {
-
 						//de eerste moet ie overslaan. maar is geen ramp als die 2x voorkomt
-						totalOptions.push( Battlefield[x][column].id );
+						if (x != row - 1) totalOptions.push( Battlefield[x][column].id );
 						if ( Battlefield[x][column].blocked || Battlefield[x][column].occupied ) {
 							if (Battlefield[x][column].blocked || Battlefield[x][column].occupiedBy.color == color ) {
 								totalOptions.pop();
@@ -63,11 +110,10 @@ var CPU = (function($, Battlefield){
 						}
 					}
 				}
-
 				
 				if (canMoveDown) {
 					for ( var y = row + 1; y < Battlefield.length; y++ ) {
-						totalOptions.push( Battlefield[y][column].id );
+						if (y != row + 1) totalOptions.push( Battlefield[y][column].id );
 						if ( Battlefield[y][column].blocked || Battlefield[y][column].occupied ) {
 							if (Battlefield[y][column].blocked || Battlefield[y][column].occupiedBy.color == color ) {
 								totalOptions.pop();
@@ -77,9 +123,29 @@ var CPU = (function($, Battlefield){
 					}
 				}
 
-				/*
-					rechts en links toevoegen!!
-				*/
+				if (canMoveLeft) {
+					for ( var l = column - 1; l >= 0; l-- ) {
+						if (l != column - 1) totalOptions.push( Battlefield[row][l].id );
+						if ( Battlefield[row][l].blocked || Battlefield[row][l].occupied ) {
+							if (Battlefield[row][l].blocked || Battlefield[row][l].occupiedBy.color == color ) {
+								totalOptions.pop();
+							}
+							break;
+						}						
+					}
+				}
+
+				if (canMoveRight) {
+					for ( var r = column + 1; r < Battlefield.length; r++ ) {
+						if (r != column + 1) totalOptions.push( Battlefield[row][r].id );
+						if ( Battlefield[row][r].blocked || Battlefield[row][r].occupied ) {
+							if (Battlefield[row][r].blocked || Battlefield[row][r].occupiedBy.color == color ) {
+								totalOptions.pop();
+							}
+							break;
+						}						
+					}
+				}
 
 			}
 
@@ -100,8 +166,6 @@ var CPU = (function($, Battlefield){
 		
 	});
 	
-	var knownPieces = [];
-
 	var initiateToEngage = (function(){
 
 		console.log('computer is to move');
