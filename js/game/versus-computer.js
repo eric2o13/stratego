@@ -21,11 +21,8 @@ var CPU = (function($, Battlefield){
 	};
 
 	var playBestMove = (function(piecesWithOptions){
-
-		//console.log(piecesWithOptions);
 		
 		var movelist = [];
-
 		for (var key in piecesWithOptions) {
 			if (piecesWithOptions.hasOwnProperty(key)) {
 
@@ -36,24 +33,19 @@ var CPU = (function($, Battlefield){
 					if(obj.hasOwnProperty(prop) ){
 						movelist.push( [piece, piece.onField, obj[prop] ]);
 						//console.log(piece.name + " can move from " + piece.onField + " to field " + obj[prop] );
-						//console.log(prop + " = " + obj[prop]);
 					}
 				}
 			}
 		}
 
-		console.log(movelist);
+		var randomMove = movelist[Math.floor(Math.random()*movelist.length)];		
+		play( randomMove[0], randomMove[1], randomMove[2]  );
 
-		var random = (Math.round(Math.random()*movelist.length) + 1) - 1;
-		console.log( movelist[random][0], movelist[random][1], movelist[random][2]  );
+		//gooit geen errors meer, wat indicators voor de bestmovecalculaties:
+		/*
 
-		play( movelist[random][0], movelist[random][1], movelist[random][2]  );
-		//console.log(random);
-		//we moeten nog wel ff uitschakelen dat de blauwe elementen niet aanklikbaar zijn
-		// lijkt te werken, maar gaat soms pans,
-		//denk een fout in de randomizer
-		//maar nu ga ik silicon valley checken
-		// momenteel speelt de computer dus puur random moves.
+
+		*/
 
 	});
 
