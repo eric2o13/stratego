@@ -16,36 +16,50 @@ var CPU = (function($, Battlefield){
 
 		}
 
-		playBestMove( piecesWithOptions );
+		createMovelist( piecesWithOptions );
 
 	};
 
-	var playBestMove = (function(piecesWithOptions){
+	var createMovelist = (function(piecesWithOptions){
 		
 		var movelist = [];
 		for (var key in piecesWithOptions) {
 			if (piecesWithOptions.hasOwnProperty(key)) {
 
-				var obj = piecesWithOptions[key].options;
-				var piece = piecesWithOptions[key].piece;
+				var obj = piecesWithOptions[key].options,
+				piece = piecesWithOptions[key].piece;
 
 				for (var prop in obj) {
 					if(obj.hasOwnProperty(prop) ){
-						movelist.push( [piece, piece.onField, obj[prop] ]);
-						//console.log(piece.name + " can move from " + piece.onField + " to field " + obj[prop] );
+						movelist.push( [piece, piece.onField, obj[prop] ]); // [ piece, fromfieldid, tofieldid ];
 					}
 				}
 			}
 		}
 
-		var randomMove = movelist[Math.floor(Math.random()*movelist.length)];		
-		play( randomMove[0], randomMove[1], randomMove[2]  );
+		renderBestMove( movelist );
 
-		//gooit geen errors meer, wat indicators voor de bestmovecalculaties:
+	});
+
+	var renderBestMove = (function( movelist ){
+
 		/*
+			
+			We verbinden voorlopig credits aan iedere move.
+			Je krijgt punten voor:
 
+				- een stuk capturen
+				- naar voren bewegen
 
+			Verder kunnen we per piece nog wat dingen bedenken
+				- een scout moet alleen springen als hij ook daadwerkelijk een stuk kan capturen
+				- een spion moet alles ontlopen, tenzij hij weet waar de vlag is.
+ 	
 		*/
+		
+		console.log(movelist);
+		var randomMove = movelist[Math.floor(Math.random()*movelist.length)];
+		play( randomMove[0], randomMove[1], randomMove[2]  );
 
 	});
 
@@ -56,7 +70,7 @@ var CPU = (function($, Battlefield){
 		BOARD.selectedFieldId = fromfieldid;
 		ENGAGE_ARMY.engageToField($field);
 
-		console.log("play " + piece.name + "from field " + fromfieldid + " to field " + tofieldid + " and switch turns");
+		//console.log("play " + piece.name + "from field " + fromfieldid + " to field " + tofieldid + " and switch turns");
 
 	});
 
@@ -92,7 +106,6 @@ var CPU = (function($, Battlefield){
 
 				if (canMoveUp) {
 					for (var x = row - 1; x >= 0; x-- ) {
-						//de eerste moet ie overslaan. maar is geen ramp als die 2x voorkomt
 						if (x != row - 1) totalOptions.push( Battlefield[x][column].id );
 						if ( Battlefield[x][column].blocked || Battlefield[x][column].occupied ) {
 							if (Battlefield[x][column].blocked || Battlefield[x][column].occupiedBy.color == color ) {
@@ -165,11 +178,12 @@ var CPU = (function($, Battlefield){
 
 	});
 
-
 	return {
+
 		move: function(){
 			initiateToEngage();
 		}
+
 	}
 
 })(jQuery, BOARD.canvas);

@@ -2,7 +2,7 @@ var WAR = (function( $ ){
 
 	var started = false;
 	var colorToMove = undefined;
-	
+
 	var $movelist = $("#movelist");
 	var moveIndex = 0;
 	var movehistory = [];

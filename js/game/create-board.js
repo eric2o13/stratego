@@ -15,7 +15,8 @@ var BOARD = (function( $ ){
 		Battlefield 	= [],
 		RedPieces 		= PIECES.red,
 		BluePieces 		= PIECES.blue,
-		selectedFieldId	= undefined;
+		selectedFieldId	= undefined,
+		FEN = "F123344455/5566667777/8888899999/99910BBBBBB/00xx00xx00/00xx00xx00/99910BBBBBB/8888899999/5566667777/F123344455";
 
 	var Field = function( y, x, id ){
 
@@ -238,13 +239,35 @@ var BOARD = (function( $ ){
 
 	})();
 
-	renderBattlefield();
+	var setFEN = (function(){
+
+		//console.log(BOARD);
+		var tmp = "";
+		for ( var y = 0; y < Battlefield.length; y++ ) {
+			for ( var x = 0, field; x < Battlefield[y].length; x++ ) {
+				
+				field = Battlefield[y][x];
+				if (field.occupied) {
+					tmp += field.occupiedBy.color.charAt(0) + field.occupiedBy.rank;
+				} else if (field.blocked) {
+					tmp += "x";
+				} else {
+					tmp += "0";
+				}
+			}
+			tmp += "/";
+		}
+
+		console.log(tmp);
+	})();
+
+	renderBattlefield(); // moet in een init structuur
 
 	return {
 
-		'canvas': Battlefield,
+		canvas: Battlefield,
 
-		'selectedFieldId' : selectedFieldId,
+		selectedFieldId: selectedFieldId,
 
 		selectFieldById: function(id) {
 
