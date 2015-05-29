@@ -14,8 +14,6 @@ var ENGAGE_ARMY = (function($, Battlefield ){
 			canMoveRight,
 			CanMoveLeft;
 
-		//console.log(mode);
-
 		if ( color != WAR.colorToMove ) {
 			
 			console.log('not your turn to move');
@@ -75,9 +73,9 @@ var ENGAGE_ARMY = (function($, Battlefield ){
 
 			/* Highlight the available options */
 			if (mode == "highlight") {
-				( options.length ) ?
-					highlightOptions( field, options ):
-				 	console.log('there are no available options for this piece');
+
+				( options.length ) ? highlightOptions( field, options ): console.log('there are no available options for this piece');
+			
 			}
 
 			/*  Return the available options */
@@ -181,7 +179,6 @@ var ENGAGE_ARMY = (function($, Battlefield ){
 			movingPiece: piece
 		};
 
-		//reset Selected
 		BOARD.selectedFieldId = undefined;
 
 		WAR.saveMove( move );

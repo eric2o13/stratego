@@ -3,10 +3,11 @@ var WAR = (function( $ ){
 	var started = false;
 	var colorToMove = undefined;
 
-	var $movelist = $("#movelist");
-	var moveIndex = 0;
-	var movehistory = [];
-	var saveMove = (function(move){
+	var $movelist = $("#movelist"),
+	moveIndex = 0,
+	movehistory = [];
+
+	var saveMove = (function( move ){
 
 		movehistory.push( move );
 		moveIndex++;
