@@ -1,38 +1,27 @@
-/*=============================================================
----------------------------------------------------------------
-===============================================================
+var PIECES = (function(){
 
-	Oieces constructor:
-	Creates and initiates the pieces.
+	var startingpieces = ["Flag","Marshall","General","Colonel","Major","Captain","Lieutenant","Sergeant","Miner","Scout","Spy","Bomb" ],
+	redPieces = [],
+	bluePieces = [];
 
-===============================================================	
----------------------------------------------------------------
-=============================================================*/
+	var initialize = (function(){
 
-var PIECES = (function( $ ){
+		var Piece = function( name, rank, color ){
 
-	var Piece = function( name, rank, color ){
+			this.name 		= name;
+			this.rank 		= rank;
+			this.color		= color;
+			this.onBoard	= false;		
+			this.onField 	= undefined;
+			this.onBoard 	= true;
+			this.canMove	= (rank == "B" || rank == "F") ? false: true;
+			this.isScout	= (rank == 9) ? true : false;
+			this.isMiner 	= (rank == 8) ? true : false;
+			this.isSpy	 	= (rank == 10) ? true : false;
+			this.isBomb		= (rank == "B") ? true : false;
+			this.isFlag		= (rank == "F") ? true : false;
 
-		this.name 		= name;
-		this.rank 		= rank;
-		this.color		= color;
-		this.onBoard	= false;		
-		this.onField 	= undefined;
-		this.onBoard 	= true;
-		this.canMove	= (rank == "B" || rank == "F") ? false: true;
-		this.isScout	= (rank == 9) ? true : false;
-		this.isMiner 	= (rank == 8) ? true : false;
-		this.isSpy	 	= (rank == 10) ? true : false;
-		this.isBomb		= (rank == "B") ? true : false;
-		this.isFlag		= (rank == "F") ? true : false;
-
-	};
-
-	var startingpieces 	= ["Flag","Marshall","General","Colonel","Major","Captain","Lieutenant","Sergeant","Miner","Scout","Spy","Bomb" ];
-	var redPieces 		= [];
-	var bluePieces 		= [];
-
-	var createPieces	= (function(){
+		};
 
 		for ( var x = 0, name, rank, quantity; x < startingpieces.length; x++ ) {
 
@@ -102,11 +91,13 @@ var PIECES = (function( $ ){
 
 	return {
 
-		'red'  : redPieces,
-		'blue' : bluePieces
+		red  : redPieces,
+		blue : bluePieces
 
-	}
+	};
 
+})();
 
-})(jQuery);
+console.log(PIECES);
+
 

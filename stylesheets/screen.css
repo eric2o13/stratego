@@ -216,12 +216,14 @@
   content: "11";
 }
 
-/* line 150, ../css/game/_battlefield.scss */
-#battlefield {
+/* line 151, ../css/game/_battlefield.scss */
+#battlefield,
+#custom-battlefield {
   margin-top: 50px;
 }
-/* line 153, ../css/game/_battlefield.scss */
-#battlefield .field {
+/* line 154, ../css/game/_battlefield.scss */
+#battlefield .field,
+#custom-battlefield .field {
   position: relative;
   background: white;
   height: 80px;
@@ -229,20 +231,24 @@
   border-bottom: 1px solid #ccc;
   border-right: 1px solid #ccc;
 }
-/* line 161, ../css/game/_battlefield.scss */
-#battlefield .field.blocked {
+/* line 162, ../css/game/_battlefield.scss */
+#battlefield .field.blocked,
+#custom-battlefield .field.blocked {
   background: #EEE;
 }
-/* line 165, ../css/game/_battlefield.scss */
-#battlefield .field.selected {
+/* line 166, ../css/game/_battlefield.scss */
+#battlefield .field.selected,
+#custom-battlefield .field.selected {
   background: yellow;
 }
-/* line 169, ../css/game/_battlefield.scss */
-#battlefield .field.valid-option {
+/* line 170, ../css/game/_battlefield.scss */
+#battlefield .field.valid-option,
+#custom-battlefield .field.valid-option {
   background: orange;
 }
-/* line 173, ../css/game/_battlefield.scss */
-#battlefield .field span {
+/* line 174, ../css/game/_battlefield.scss */
+#battlefield .field span,
+#custom-battlefield .field span {
   color: #999;
   font-size: 11px;
   position: absolute;
@@ -251,7 +257,7 @@
   top: 32px;
 }
 
-/* line 187, ../css/game/_battlefield.scss */
+/* line 188, ../css/game/_battlefield.scss */
 #movelist {
   clear: both;
   margin-top: 10px;
@@ -264,8 +270,9 @@
 	Pieces
 
 ====================================================*/
-/* line 7, ../css/game/_pieces.scss */
-#battlefield .field figure {
+/* line 8, ../css/game/_pieces.scss */
+#battlefield .field figure,
+#custom-battfield .field figure {
   color: white;
   display: inline-block;
   font-size: 22px;
@@ -275,16 +282,19 @@
   margin-top: 7px;
   cursor: pointer;
 }
-/* line 17, ../css/game/_pieces.scss */
-#battlefield .field figure.red {
+/* line 18, ../css/game/_pieces.scss */
+#battlefield .field figure.red,
+#custom-battfield .field figure.red {
   background: red;
 }
-/* line 21, ../css/game/_pieces.scss */
-#battlefield .field figure.blue {
+/* line 22, ../css/game/_pieces.scss */
+#battlefield .field figure.blue,
+#custom-battfield .field figure.blue {
   background: blue;
 }
-/* line 25, ../css/game/_pieces.scss */
-#battlefield .field figure.selected {
+/* line 26, ../css/game/_pieces.scss */
+#battlefield .field figure.selected,
+#custom-battfield .field figure.selected {
   border: 2px solid green;
 }
 

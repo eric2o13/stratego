@@ -1,4 +1,4 @@
-var ARRANGE_ARMY = (function( $ , Battlefield, selectedFieldId ){
+var ARRANGE_ARMY = (function( $, Battlefield, selectedFieldId ){
 
 	var checkAvailableOptions = function( $element ){
 
@@ -22,7 +22,6 @@ var ARRANGE_ARMY = (function( $ , Battlefield, selectedFieldId ){
 		}
 
 		field.selected = true;
-		BOARD.selectedFieldId = field.id;
 		selectedFieldId = fieldid;
 
 		highlightAvailableOptions( options );
@@ -79,21 +78,21 @@ var ARRANGE_ARMY = (function( $ , Battlefield, selectedFieldId ){
 
 	};
 
-	var startGame = (function(){
+	var _startGame = (function(){
 
-		WAR.started = true;
-		WAR.colorToMove = "red";
-		ENGAGE_ARMY.init();
+		GAME.started = true;
+		GAME.colorToMove = "red";
+		ENGAGE_ARMY.initialize();
 
 	});
 
-	$(document).on("ready", function(){
+	var initialize = (function(){
 
 		$(document).on('click', '#battlefield .field figure', function () {
 
 			var $this = $(this);
 
-			if ( !WAR.started ) {
+			if ( !GAME.started ) {
 				if ( !$this.parents(".field").hasClass("selected") && !$(".field.selected").length ) {
 					checkAvailableOptions( $this );
 				}
@@ -108,16 +107,23 @@ var ARRANGE_ARMY = (function( $ , Battlefield, selectedFieldId ){
 				fieldid = $this.attr("data-fieldid");
 				
 			//securityChecks();
-			if ( !WAR.started) switchSelectedTo( fieldid ); 
+			if ( !GAME.started) switchSelectedTo( fieldid ); 
 
 		});
 
 		$(document).on('click', '#startGame button.btn-primary', function () {
 
-			startGame();
+			_startGame();
 			$("*[data-target='#startGame']").hide().remove();
 
 		});
+
+	});
+
+	//misschien moeten we dit in een ander js bestand doen om het overzicht te bewaren.
+	$(document).on("ready", function(){
+
+		initialize();
 
 	});
 
