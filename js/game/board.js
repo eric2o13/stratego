@@ -238,11 +238,89 @@ var BOARD = (function( $ ){
 	})();
 
 	/*
-		render redBoard canvas
-		render blueBoard canvas
+		public Canvas,
+		moet uiteindelijk het Battlefield vervangen.
+		staat nu ff hier omdat het battlefield anders leeg is
+	
 	*/
+	var publicCanvas = [];
+	var fakeColorToMove = "red";
+	var $publicCanvas = $("#custom-battlefield");
+
+	var renderPublicCanvas = function(){
+		
+		console.log(publicCanvas);
+
+		for ( var y = 0, html = "" ; y < publicCanvas.length; y++ ) {
+			
+			html += "<div class='row clearfix'>";
+			for (var x = 0, field; x < publicCanvas[y].length; x++ ) {
+
+				field = publicCanvas[y][x];
+
+				fieldclasses = "field col-sm-1 ";
+				fieldclasses += (field.blocked) ? " blocked" : "";
+				fieldclasses += (field.occupied) ? " occupied" : "";
+				fieldclasses += (field.validOption) ? " valid-option" : "";
+				fieldclasses += (field.selected) ? " selected" : "";
+
+				fieldattributes = "data-fieldid='"+field.id+"'";
+
+				contentattributes = (field.occupied) ? "class='"+field.occupiedBy.color + "' " : "class='field-id "+field.id+"' ";
+				content = (field.occupied) ? "<figure "+contentattributes+">" + field.occupiedBy.rank + "</figure>" :"<span "+contentattributes+">" + field.id + "</span>";
+
+				html += "<div class='"+fieldclasses+"' "+fieldattributes+">" + content + "</div>";
+
+
+			}
+			html += "</div>";
+		}
+
+		$publicCanvas.html(html);
+
+	};
+
+	var createPublicCanvas = (function(){
+
+		var Enemy = function (  piece ){
+
+			this.color = piece.color;
+			this.rank = 0;
+
+		};
+
+		var PublicField = function( y, x, id ){
+
+			this.row 		= y;
+			this.column 	= x;
+			this.id 		= String.fromCharCode(97 + y) + x;
+			
+			this.occupied	= Battlefield[y][x].occupied ? true : false;
+			this.blocked 	= Battlefield[y][x].blocked ? true : false;
+			this.occupiedBy = Battlefield[y][x].occupiedBy ? (Battlefield[y][x].occupiedBy.color == fakeColorToMove ) ? Battlefield[y][x].occupiedBy : new Enemy( Battlefield[y][x].occupiedBy ) : undefined;
+			this.selected 	= Battlefield[y][x].selected ? true : false;
+			this.validOption= Battlefield[y][x].validOption ? true : false;
+			
+		};
+
+		for ( var y = 0, content; y < 12; y++ ) {
+			publicCanvas.push( [] );
+			for ( var x = 0, field; x < 12; x++ ) { 
+				publicCanvas[y].push( new PublicField(y,x,0) );
+			}
+		}
+
+
+		renderPublicCanvas();
+
+	})();
+
+
+
+
 
 	return {
+
 		canvas: Battlefield,
 		selectedFieldId: selectedFieldId,
 		selectFieldById: selectFieldById,

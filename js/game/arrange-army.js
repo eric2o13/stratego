@@ -1,6 +1,6 @@
 var ARRANGE_ARMY = (function( $, Battlefield, selectedFieldId ){
 
-	var checkAvailableOptions = function( $element ){
+	var _checkAvailableOptions = (function( $element ){
 
 		var options = [],
 			$field 	= $element.parents(".field"),
@@ -24,11 +24,11 @@ var ARRANGE_ARMY = (function( $, Battlefield, selectedFieldId ){
 		field.selected = true;
 		selectedFieldId = fieldid;
 
-		highlightAvailableOptions( options );
+		_highlightAvailableOptions( options );
 
-	};
+	});
 
-	var highlightAvailableOptions = function( options ){
+	var _highlightAvailableOptions = (function( options ){
 		
 		for (var x = 0, field, fieldid; x < options.length; x++ ) {
 
@@ -40,9 +40,9 @@ var ARRANGE_ARMY = (function( $, Battlefield, selectedFieldId ){
 
 		BOARD.render();
 
-	};
+	});
 
-	var switchSelectedTo = function( fieldid ){
+	var _switchSelectedTo = (function( fieldid ){
 
 		var originalField = BOARD.selectFieldById(selectedFieldId),
 			pieceToMove   = BOARD.selectFieldById(selectedFieldId).occupiedBy,
@@ -75,8 +75,9 @@ var ARRANGE_ARMY = (function( $, Battlefield, selectedFieldId ){
 
 		/* Re render board */
 		BOARD.render();
+		BOARD.renderPublicCanvas();
 
-	};
+	});
 
 	var _startGame = (function(){
 
@@ -94,7 +95,7 @@ var ARRANGE_ARMY = (function( $, Battlefield, selectedFieldId ){
 
 			if ( !GAME.started ) {
 				if ( !$this.parents(".field").hasClass("selected") && !$(".field.selected").length ) {
-					checkAvailableOptions( $this );
+					_checkAvailableOptions( $this );
 				}
 			} 
 
@@ -107,7 +108,7 @@ var ARRANGE_ARMY = (function( $, Battlefield, selectedFieldId ){
 				fieldid = $this.attr("data-fieldid");
 				
 			//securityChecks();
-			if ( !GAME.started) switchSelectedTo( fieldid ); 
+			if ( !GAME.started) _switchSelectedTo( fieldid ); 
 
 		});
 
@@ -120,7 +121,6 @@ var ARRANGE_ARMY = (function( $, Battlefield, selectedFieldId ){
 
 	});
 
-	//misschien moeten we dit in een ander js bestand doen om het overzicht te bewaren.
 	$(document).on("ready", function(){
 
 		initialize();

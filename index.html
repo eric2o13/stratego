@@ -24,17 +24,21 @@
     <main class="container">
       <h1>Stratego</h1>
       
+
+
       <div class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Move history</a>
         <section id="movelist" class="dropdown-menu" role="menu" aria-labelledby="dLabel"></section>
       </div>
-      <div id="captured-pieces"></div>
       <section id="battlefield" class="container"></section>
-      <section id="custom-battlefield" class="container"></section>
+
+
+
       <!-- popup -->
       <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#startGame">
         <span class="glyphicon glyphicon-ok"></span> I'm done setting up pieces
       </button>
+
       <div class="modal fade" id="startGame" tabindex="-1" role="dialog" aria-labelledby="startGameLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -43,6 +47,11 @@
               <h4 class="modal-title" id="startGameLabel">War is about to begin</h4>
             </div>
             <div class="modal-body">
+              <form>
+                <p>Game mode</p>
+                <label>Human vs computer <input type="radio" name="mode" value="0" /></label>
+                <label>computer vs computer<input type="radio" name="mode" value="1" /></label>
+              </form>
               <p>You're about to start the game. Are you sure you are done setting up your pieces?</p>
             </div>
             <div class="modal-footer">
@@ -52,6 +61,12 @@
           </div>
         </div>
       </div>
+      <!-- popup -->
+
+
+      <div id="captured-pieces"></div>      
+      <section id="custom-battlefield" class="container"></section>
+
 
     </main>
 
@@ -59,9 +74,9 @@
     <script src="js/bootstrap.min.js"></script>
     <!-- init scripts -->
     <script src="js/game/example-module.js"></script>
-    <script src="js/game/game-config.js"></script>
-    <script src="js/game/create-pieces.js"></script>
-    <script src="js/game/create-board.js"></script>
+    <script src="js/game/game.js"></script>
+    <script src="js/game/pieces.js"></script>
+    <script src="js/game/board.js"></script>
     <script src="js/game/arrange-army.js"></script>
     <!-- when game is started -->
     <script src="js/game/engage-army.js"></script>

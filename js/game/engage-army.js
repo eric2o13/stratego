@@ -1,21 +1,5 @@
 var ENGAGE_ARMY = (function( $, Battlefield ){
 
-	var highlightOptions = function( field, options ) {
-
-		field.selected = true;
-		BOARD.selectedFieldId = field.id;
-
-		for ( var x = 0, fieldid; x < options.length; x++ ) {
-			
-			fieldid = options[x];
-			field = BOARD.selectFieldById( fieldid );
-			field.validOption = true;
-		}
-
-		BOARD.render();
-
-	};
-
 	var engageToField = function( $field ) {
 
 		var fieldid  = $field.attr("data-fieldid"),
@@ -147,6 +131,22 @@ var ENGAGE_ARMY = (function( $, Battlefield ){
 
 	};
 
+	var _highlightOptions = (function( field, options ) {
+
+		field.selected = true;
+		BOARD.selectedFieldId = field.id;
+
+		for ( var x = 0, fieldid; x < options.length; x++ ) {
+			
+			fieldid = options[x];
+			field = BOARD.selectFieldById( fieldid );
+			field.validOption = true;
+		}
+
+		BOARD.render();
+
+	});
+
 	var _checkOptions = (function( $piece , mode ) {
 
 		var options = [], 
@@ -216,7 +216,7 @@ var ENGAGE_ARMY = (function( $, Battlefield ){
 			/* Highlight the available options */
 			if (mode == "highlight") {
 
-				( options.length ) ? highlightOptions( field, options ): console.log('there are no available options for this piece');
+				( options.length ) ? _highlightOptions( field, options ): console.log('there are no available options for this piece');
 			
 			}
 
@@ -360,8 +360,8 @@ var ENGAGE_ARMY = (function( $, Battlefield ){
 	return {
 
 		initialize: initialize,
-		canPieceMove: canPieceMove,
-		engageToField: engageToField
+		engageToField: engageToField,		
+		canPieceMove: canPieceMove
 
 	};
 

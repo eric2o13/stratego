@@ -51,7 +51,6 @@ var GAME = (function(){
 
 	};
 
-
 	var initialize = function(){
 		
 	};
@@ -73,3 +72,4 @@ var GAME = (function(){
 })();
 
 console.log(GAME);
+
