@@ -324,7 +324,9 @@ var BOARD = (function( $ ){
 		canvas: Battlefield,
 		selectedFieldId: selectedFieldId,
 		selectFieldById: selectFieldById,
-		render: renderBattlefield
+		render: renderBattlefield,
+		renderPublicCanvas: renderPublicCanvas
+		
 	};
 
 })(jQuery);

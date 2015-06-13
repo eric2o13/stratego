@@ -1,0 +1,23 @@
+{
+  "name": "stratego",
+  "version": "1.0.0",
+  "description": "strategojs",
+  "main": "index.js",
+  "scripts": {
+    "start": "ws",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eric2o13/stratego.git"
+  },
+  "author": "E",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eric2o13/stratego/issues"
+  },
+  "homepage": "https://github.com/eric2o13/stratego#readme",
+  "dependencies": {
+    "express": "^4.12.4"
+  }
+}
